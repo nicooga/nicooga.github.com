@@ -4,14 +4,21 @@ layout: default
 
 <div class="container">
 	<div class="row">
-		<div class="twelvecol last">
-			
+		<div class="twocol">
+			<div class="background">
+				<div class="g-plusone" data-annotation="inline" data-width=""></div>
+			</div>
+		</div>
+
+		<div class="tencol last">
 			<div class="background">
 				<h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
 				<strong>
 				  Written: {{ page.date | date_to_string }}.
 				</strong>
-				
+
+				<span itemprop="name">{{ page.title }}</span>
+				<span itemprop="description">Blog posts about software and more!</span>
 
 				{{ content }}
 			</div>
@@ -43,3 +50,12 @@ layout: default
 		</div>
 	</div>
 </div>
+
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
