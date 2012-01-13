@@ -5,7 +5,7 @@ title: Home Page
 <br/>
 <div class="container">
 	<div class="row">
-		<div class="twelvecol last">
+		<div class="threecol">
 			<div class="background">
 			  	<p>
 			    	Welcome to Nicola's Lair, <a rel="me" href="http://ar.linkedin.com/in/nicolasoga">I'm a programmer</a>, my favorite programming language is ruby. 
@@ -14,8 +14,12 @@ title: Home Page
 			  	<p>
 			   		I host some of <a href="https://github.com/nicooga">my software projects</a> at github.
 			  	</p>
+			</div>
+		</div>
 
-			  	<h2>Blog Posts</h2>
+		<div class="threecol">
+			<div class="background">
+			  <h2>Blog Posts</h2>
 
                 <p>
 					<ul>
@@ -32,21 +36,37 @@ title: Home Page
 				</p>
 			</div>
 		</div>
-	</div>
-</div>
 
-<br/>
-<div class="container">
-	<div class="row">
-		<div class="twelvecol last">
+		<div class="threecol last">
 			<div class="background">
-				<small>
-	            	All texts provided under the license:
-	            	<a href="http://creativecommons.org/licenses/by/2.5/ar/">Creative Commons Atribución 2.5 Argentina</a>. &nbsp;
-	            	<a target="_blank" class="cc_by_img" href="http://creativecommons.org/licenses/by/2.5/ar/">
-	            		<img src="http://www.creativecommons.org.ar/media/local_themes/custom_theme/images/cc_ar/by-sa.png" alt="Creative Commons Atribución 2.5 Argentina">
-	            	</a>
-	            </small>
+				<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+				<script>
+				new TWTR.Widget({
+				  version: 2,
+				  type: 'profile',
+				  rpp: 4,
+				  interval: 30000,
+				  width: 250,
+				  height: 300,
+				  theme: {
+				    shell: {
+				      background: '#b3ebbb',
+				      color: '#000000'
+				    },
+				    tweets: {
+				      background: '#ffffff',
+				      color: '#ed1717',
+				      links: '#000000'
+				    }
+				  },
+				  features: {
+				    scrollbar: true,
+				    loop: true,
+				    live: true,
+				    behavior: 'default'
+				  }
+				}).render().setUser('nicooga').start();
+				</script>
 			</div>
 		</div>
 	</div>
