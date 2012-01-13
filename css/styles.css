@@ -3,19 +3,33 @@
 /* ============================== */
 
 	body {
+		color: #444;
 		font-family: sans;
 		background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAATElEQVQYV2O0O3X+PwMQHDIzZATRuAAj0QqxmfDghh3YFgWNQ3BbsFpHtEJstjBWnIdY02GIsIYyhdh0f5oZB7aFL30Rfs8QrRCbLQDvfSALXdnbSgAAAABJRU5ErkJggg==);
 	}
 
 	h1, h2, h3, h4, h5, h6, h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
 		font-family: 'Alfa Slab One', cursive;
+		margin-bottom: 20px;
+	}
+
+	a {
+		color: #4a4;
+	}
+
+	a:visited {
+		color: #464;
+	}
+
+	a:hover {
+		color: #6e6;
 	}
 
 	.logo {
 		text-align: center;
 	}
 
-	.logo * {
+	.logo a {
 		font-size: 72px;
 		color: red;
 		text-decoration: none;
@@ -26,20 +40,31 @@
 		border: 8px dashed #ada;
 		padding: 15px;
 		background-color: white;
-		
-		-moz-box-shadow: 5px 5px 5px #666;
-		-webkit-box-shadow: 5px 5px 5px #666;
-		box-shadow: 5px 5px 5px #666;
+
 	}
 
-	.background > p, .background > h2, .background > h3, .background > h4  {
-		margin-top: 20px;
+	.min_height {
+		min-height: 500px;
 	}
 
 	pre {
 		margin-top: 10px;
 		border: 1px solid #cccccc;
 		background-color: #ffffee;
+	}
+
+	.posts {
+		list-style: none;
+	}
+
+	.posts li {
+		padding-bottom: 10px;
+		margin-bottom: 20px;
+		border-bottom: 2px solid #cdc;
+	}
+
+	.posts li small {
+		font-weight: bold;
 	}
 	
 
