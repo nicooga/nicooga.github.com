@@ -3,9 +3,6 @@ layout: post
 title: Hello world
 date: 12 Jan 2012
 ---
-
-### Hello world!
-
 I decided to host my blog using github pages and
 [jekyll](https://github.com/mojombo/jekyll). This publishing platform is pretty cool for a programmer, since allows me to write my blog posts without leaving my favorite text editor.
 

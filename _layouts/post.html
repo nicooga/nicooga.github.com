@@ -22,9 +22,10 @@ layout: default
 				<strong>
 				  Written: {{ page.date | date_to_string }}.
 				</strong>
+				<br/>
 
-				<span itemprop="name">{{ page.title }}</span>
-				<span itemprop="description">Blog posts about software and more!</span>
+				<span class="hidden" itemprop="name">{{ page.title }}</span>
+				<span class="hidden" itemprop="description">Blog posts about software and more!</span>
 
 				{{ content }}
 			</div>
