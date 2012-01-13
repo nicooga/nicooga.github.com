@@ -1,0 +1,9 @@
+markdown: rdiscount
+pygments: true
+lsi: false
+future: false
+auto: false
+safe: true
+source: .
+destination: ./_site
+# exclude: []
