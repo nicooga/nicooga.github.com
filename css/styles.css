@@ -5,7 +5,7 @@
 	body {
 		color: #444;
 		font-family: sans;
-		background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAATElEQVQYV2O0O3X+PwMQHDIzZATRuAAj0QqxmfDghh3YFgWNQ3BbsFpHtEJstjBWnIdY02GIsIYyhdh0f5oZB7aFL30Rfs8QrRCbLQDvfSALXdnbSgAAAABJRU5ErkJggg==);
+		background-image:url('images/tyle.png');
 	}
 
 	h1, h2, h3, h4, h5, h6, h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
