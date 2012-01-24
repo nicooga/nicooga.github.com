@@ -38,4 +38,15 @@ The table object has the [] and []= methods, that lets you access it's data and 
     mytable[3,2] = 'something in red'.color(:red)
 {% endhighlight %}
 
-The object accepts options in hash form, like `header: true/false`, `header: true/false`, `align: ansi_ljust/ansi_rjust/ansicenter`.
+The object accepts options in hash form, like:
+ 
+ * header: 
+     + true
+     + false
+ * footer: 
+     + true
+     + false	 
+ * align:
+     + ansi_ljust
+     + ansi_rjust
+     + ansicenter.
