@@ -46,4 +46,8 @@ Well, since Rails 3 with it's new routing implementation that piece of crap dosn
 
 
 
-Want it? You can simply copy it, or
+Want it? You can simply copy it, or...
+{% highlight bash %}
+  cd my_rails_app/lib/tasks
+  wget https://github.com/downloads/nicooga/color_routes/color_routes.rake
+{% endhighlight %}
