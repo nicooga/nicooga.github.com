@@ -1,13 +1,5 @@
 ---
 permalink: /
 layout: default
-title: nicooga's Blog
+title: site.posts.first.title
 ---
-
-<h3>Posts:</h3>
-
-<ul class="nav nav-pills nav-stacked">
-{% for post in site.posts %}
-  <li><a class="act" href="{{ post.url }}">{{ post.title }}</a></li>
-{% endfor %}
-</ul>

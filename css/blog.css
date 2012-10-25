@@ -97,3 +97,7 @@ footer > a, .act, p {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+small {
+  color: white !important;
+}
