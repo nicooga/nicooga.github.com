@@ -39,14 +39,7 @@ The table object has the [] and []= methods, that lets you access it's data and 
 {% endhighlight %}
 
 The object accepts options in hash form, like:
- 
- * header: 
-     + true
-     + false
- * footer: 
-     + true
-     + false	 
- * align:
-     + ansi_ljust
-     + ansi_rjust
-     + ansicenter.
+
+* header: true/false
+* footer: true/false	 
+* align: ansi_ljust/ansi_rjust/ansicenter

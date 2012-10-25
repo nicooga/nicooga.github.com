@@ -2,13 +2,34 @@ html, body {
   height: 100%;
 }
 
+body {
+  background-image: url('img/pattern.gif');
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Dosis', sans-serif;
   font-weight: 400;
+  -webkit-border-radius: 4px 4px 0px 0px;
+  border-radius: 4px 4px 0px 0px;
+  background-color: rgba(241, 203, 105, 0.34);
 }
 
-.post > p {
+.post {
   font-size: 18px;
+}
+
+.post > p, ul {
+  font-size: 18px;
+  background-color: rgba(241, 203, 105, 0.34);
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border-radius: 4px 4px 4px 4px;
+}
+
+.me {
+  background-color: rgba(241, 203, 105, 0.34);
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  padding: 15px;
 }
 
 pre {

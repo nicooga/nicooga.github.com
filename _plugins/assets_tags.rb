@@ -17,7 +17,11 @@ module Jekyll
     end
 
     def render(context)
-      %{<link href='/css/#{@text}.css' media='screen' rel='stylesheet' type='text/css' />}
+      if not @text.start_with? 'http://'
+        %{<link href='/css/#{@text}.css' media='screen' rel='stylesheet' type='text/css' />}
+      else
+        %{<link href='#{@text}.css' media='screen' rel='stylesheet' type='text/css' />}
+      end
     end  
   end
 end
