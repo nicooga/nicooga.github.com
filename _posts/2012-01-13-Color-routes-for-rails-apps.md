@@ -7,7 +7,7 @@ So I was a little bored and I decided to play a bit with the output of rails's r
 
 Using some [ANSI codes](http://en.wikipedia.org/wiki/ANSI_escape_code) I changed the output from the usable but dull white and black output to something more colorful and fun :).
 
-<img src="https://github.com/nicooga/color_routes/raw/master/doc/demo.png" title="Example output" alt="Example output" />
+<div class="center spaced"><img src="https://github.com/nicooga/color_routes/raw/master/doc/demo2.png" title="Example output" alt="Example output" class="img img-polaroid" /></div>
 
 Installing it is quite simple. On your Gemfile, add this line:
 

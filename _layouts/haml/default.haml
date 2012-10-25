@@ -1,0 +1,62 @@
+!!!
+%html
+  %head
+    %title {{ page.title }}
+    {%include_css bootstrap%}
+    {%include_css autumn%}
+    {%include_css blog%}
+    {%include_css http://fonts.googleapis.com/css?family=Dosis|ABeeZeeblog%}
+    {%include_js bootstrap%}
+    {%include_js ganalytics%}
+
+  %body
+    .wrapper
+      .container-fluid
+        .row-fluid
+          .span3.center
+            .golden
+              .big-chunk
+              %img.img-polaroid{src: 'http://s.gravatar.com/avatar/200edcf296d9c93388dc1daae2246984?s=290'}
+              
+              .page-header
+                %h2 
+                  Nicolas Oga
+                  %small My blog
+              .justify
+                %h3 Posts
+                %ul.nav.nav-pills.nav-stacked.red
+                  {% for post in site.posts %}
+                  %li
+                    %a.act{:href => "{{post.url}}"} {{post.title}} 
+                  {% endfor %}
+            .chunk
+            .me.justify
+              %p I'm a web developer with base at Buenos Aires, Argetina, and this is a little place to publish a little bit about what I'm wasting most of my time during the week. Don't expect nothing particularly good. 
+
+          .span8
+            .big-chunk
+            .page-header
+              %h1 {{ page.title }}
+            .post {{ content }}
+      
+        <!-- Plz don't look here, this is a mess :/ -->
+        <!-- TODO: clean up -->
+
+      .chunk
+      .push
+
+    .footer
+      .center
+        .row
+          %a.act{:href => 'https://github.com/nicooga'} Git Repos
+          |
+          %a.act{:href => 'http://stackoverflow.com/users/1740079/nicooga'} Stackoverflow
+          |
+          %a.act{:href => 'http://www.linkedin.com/profile/view?id=109143988&trk=tab_pro'} Linkedin
+          |
+          %a.act{:href => 'mailto:2112.oga@gmail.com'} MailMe
+        .chunk
+        .row
+          .act{:href => 'http://creativecommons.org/licenses/by/2.5/ar/deed.en'} Creative Commons Attribution 2.5 Argentina |
+          %a.cc_by_img{:href => "http://creativecommons.org/licenses/by/2.5/ar/deed.en", :target => "_blank"}
+            %img{:alt => "Creative Commons Attribution 2.5 Argentina", :src => "http://i.creativecommons.org/l/by-sa/2.5/ar/88x31.png"}

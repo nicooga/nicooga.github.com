@@ -2,8 +2,9 @@ markdown: rdiscount
 pygments: true
 lsi: false
 future: false
-auto: false
-safe: true
+auto: true
+safe: false
 source: .
+plugins: ./_plugins
 destination: ./_site
-# exclude: []
+exclude: Rakefile
