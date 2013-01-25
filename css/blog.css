@@ -1,3 +1,8 @@
+div.post {
+  background-color: rgba(241, 203, 105, 0.63);
+  padding: 5px;
+}
+
 html, body {
   height: 100%;
 }
@@ -45,8 +50,8 @@ pre * {
   height: auto !important;
   height: 100%;
   margin: 0 auto -49px;
-  padding-left: 10%;
-  padding-right: 10%; 
+  padding-left: 2%;
+  padding-right: 2%; 
 }
 
 .footer, .push {

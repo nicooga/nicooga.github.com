@@ -1,5 +1,6 @@
 ---
 layout: post
+layout: default
 title: Hello world
 date: 12 Jan 2012
 ---

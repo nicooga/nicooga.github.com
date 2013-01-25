@@ -1,13 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>Tablizer, table generator for ruby</title>
-    <link href="/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="/css/autumn.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="/css/blog.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Dosis|ABeeZeeblog.css" media="screen" rel="stylesheet" type="text/css">
-    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script src="/js/bootstrap.js" type="text/javascript"></script>
-    <script src="/js/ganalytics.js" type="text/javascript"></script>
+    <title>{{ page.title }}</title>
+    {%include_css bootstrap%}
+    {%include_css autumn%}
+    {%include_css blog%}
+    {%include_css http://fonts.googleapis.com/css?family=Dosis|ABeeZeeblog%}
   </head>
   <body>
     <div class='wrapper'>
@@ -16,7 +14,7 @@
           <div class='span3 center'>
             <div class='golden'>
               <div class='big-chunk'></div>
-              <img class='img-polaroid' src='http://s.gravatar.com/avatar/200edcf296d9c93388dc1daae2246984?s=290' />
+              <img class='img-polaroid' src='http://s.gravatar.com/avatar/200edcf296d9c93388dc1daae2246984?s=300' style='width: 80%;' />
               <div class='page-header'>
                 <h2>
                   Nicolas Oga
@@ -36,10 +34,10 @@
             </div>
             <div class='chunk'></div>
             <div class='me justify'>
-              <p>I'm a web developer with base at Buenos Aires, Argetina, and this is a little place to publish a little bit about what I'm wasting most of my time during the week. Don't expect nothing particularly good.</p>
+              <p>I'm a web developer with base at Buenos Aires, Argetina, and this is a little place to publish a bit about what I'm wasting most of my time during the week. Don't expect nothing particularly good.</p>
             </div>
           </div>
-          <div class='span8'>
+          <div class='span8 post'>
             <div class='big-chunk'></div>
             <div class='page-header'>
               <h1>
@@ -76,5 +74,9 @@
         </div>
       </div>
     </div>
+    <!-- Scripts -->
+    {%include_js jquery%}
+    {%include_js bootstrap%}
+    {%include_js ganalytics%}
   </body>
 </html>
