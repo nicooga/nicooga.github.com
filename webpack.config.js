@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/index.js'),
+  entry: path.resolve(__dirname, 'src/index.jsx'),
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Nicolas Oga',
@@ -13,13 +13,34 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /^node_modules/,
         use: ['babel-loader']
       },
       {
         test: /\.css$/,
-        use: ['css-loader']
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|jfif|webp)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { outputPath: 'images/' }
+          }
+        ]
       }
     ]
   },
@@ -32,6 +53,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist')
+    contentBase: path.resolve(__dirname, 'dist'),
+    historyApiFallback: true
   }
 }

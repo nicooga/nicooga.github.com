@@ -10,9 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.9.0",
+    "normalize.css": "^8.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
     "styled-components": "^5.0.0",
+    "typeface-roboto": "0.0.75",
     "webpack-cli": "^3.3.10"
   },
   "devDependencies": {
@@ -20,7 +25,10 @@
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.1.3",
     "webpack": "^4.41.5",
     "webpack-dev-server": "^3.10.1"
   }
