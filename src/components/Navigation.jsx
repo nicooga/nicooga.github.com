@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink } from 'react-router-dom'
 
 import MaterialUIButton from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
@@ -11,15 +11,11 @@ const Root = styled.div`
   margin-bottom: 40px;
 `
 
-const Logo = styled.div`
-  margin-right: 16px;
-`
-
 const Button = styled(MaterialUIButton)`
   text-transform: capitalize !important;
 `
 
-const Link = ({ to, children }) => (
+const Link = ({ to, children }) => ( // eslint-disable-line react/prop-types
   <Button component={RouterLink} to={to} size='small'>{children}</Button>
 )
 

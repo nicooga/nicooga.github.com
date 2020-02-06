@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Img = styled.img`
@@ -13,7 +14,7 @@ const Img = styled.img`
   }
 `
 
-const Root = styled.div`
+const Root = styled.span`
   display: flex;
   width: 100%;
   height: 300px;
@@ -22,10 +23,14 @@ const Root = styled.div`
   padding: 8px;
 `
 
-const InlineGallery = ({ images }) => (
+const Gallery = ({ images }) => (
   <Root>
-    {images.map(src => <Img src={src} />)}
+    {images.map((src, index) => <Img src={src} key={index} />)}
   </Root>
 )
 
-export default InlineGallery
+Gallery.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired
+}
+
+export default Gallery

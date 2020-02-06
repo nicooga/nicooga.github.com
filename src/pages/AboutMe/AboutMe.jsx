@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Typography from '@material-ui/core/Typography'
 
-import InlineGallery from '../../components/InlineGallery'
+import Gallery from '../../components/Gallery'
 
 import barElChino from './bar-el-chino.jpg'
 import barElChino2 from './bar-el-chino-2.jpg'
@@ -26,6 +26,7 @@ import BiancaYPeluso from './bianca-y-peluso.jpg'
 import peje from './peje.jpg'
 import bici from './bici.jpg'
 import casamiento from './casamiento.jpg'
+import ogasBrothers from './ogas_brothers.jpg'
 
 const P = styled(Typography).attrs({ variant: 'body1', paragraph: true })``
 
@@ -36,13 +37,13 @@ const SectionTitle = styled(Typography).attrs({ variant: 'h5', element: 'h2', pa
 const AboutMe = _props => (
   <div>
     <P>
-      I'm a young adult, currently living in Buenos Aires, Argentina.
+      I&apos;Mm a young adult, currently living in Buenos Aires, Argentina.
     </P>
 
     <P>
-      I've started building this site as a place to promote my coding skills, but I enjoy a wide range of activities aside from programming.
+      I&apos;ve started building this site as a place to promote my coding skills, but I enjoy a wide range of activities aside from programming.
       Anyway, even if you are here to see if I am a good fit for your development team, it does not hurt to learn a little bit about my life and where I come from.
-      It's a relatively long story. Here it goes.
+      It&apos;s a relatively long story. Here it goes.
     </P>
 
     <SectionTitle>The humble origins</SectionTitle>
@@ -55,26 +56,26 @@ const AboutMe = _props => (
     <P>
       Take a look at <em>Bar El Chino</em>, when it still served to customers:
 
-      <InlineGallery images={[barElChino, barElChino2]} />
+      <Gallery images={[barElChino, barElChino2]} />
 
       <em>Esquina Homero Manzi</em>:
 
-      <InlineGallery images={[homeroManzi, homeroManzi2, homeroManzi3]} />
+      <Gallery images={[homeroManzi, homeroManzi2, homeroManzi3]} />
 
       <em>Puente Alsina</em>:
 
-      <InlineGallery images={[puenteAlsina, puenteAlsina2, puenteAlsina3]} />
+      <Gallery images={[puenteAlsina, puenteAlsina2, puenteAlsina3]} />
 
-      And another monument, the place where I went to elementary school and where I also learned music during the afternoons. <em>Instituto Félix Fernando Bernasconi</em>, also called "la escuela palacio" ("the palace school"):
+      And another monument, the place where I went to elementary school and where I also learned music during the afternoons. <em>Instituto Félix Fernando Bernasconi</em>, also called &quot;la escuela palacio&quot; (&quot;the palace school&quot;):
 
-      <InlineGallery images={[bernasconi, bernasconiPatio, bernasconiTeatro, bernasconiBiblioteca, bernasconiMuseo, bernasconiPileta]} />
+      <Gallery images={[bernasconi, bernasconiPatio, bernasconiTeatro, bernasconiBiblioteca, bernasconiMuseo, bernasconiPileta]} />
 
-       "Palace" is not an exaggeration. This school features monumental architecture with classic influence and occupies over 2 regular blocks.
+       &quot;Palace&quot; is not an exaggeration. This school features monumental architecture with classic influence and occupies over 2 regular blocks.
        It has a theatre, multiple museums, two big patios, climate-controlled swimming pools, dining rooms, a library. And I am probably forgetting something.
     </P>
 
     <P>
-      Maybe the most interesting fact about this school resides in its origins. <em>Félix Fernando Bernasconi</em> was a rich swiss immigrant who donated all his wealth for the construction of this "palace school", in order to attract as many students as possible.
+      Maybe the most interesting fact about this school resides in its origins. <em>Félix Fernando Bernasconi</em> was a rich swiss immigrant who donated all his wealth for the construction of this &quot;palace school&quot;, in order to attract as many students as possible.
       To make sure that his goal was fulfilled completely, nine months before his death he clarified in his will that the palace school should be built on the land occupied by the fifth house of the famous Perito Moreno, Facundo Pascasio Moreno.
       Why there? Because it was surrounded by a modest neighbourhood of industrial appearance.
     </P>
@@ -91,39 +92,39 @@ const AboutMe = _props => (
 
     <P>
       Sadly, a lot of the places I mentioned are not conserved in good shape.
-      Maybe, if more tourists knew it's history and came to see them, the government would care a little bit more about keeping them in shape.
+      Maybe, if more tourists knew it&apos;Ms history and came to see them, the government would care a little bit more about keeping them in shape.
     </P>
 
     <P>
       I also had the privilege of visiting beautiful places in my countries, like Córdoba, San Luis and Neuquén.
-      And my family and I would regularly spend summers in "Las Toninas", a little town on the Atlantic coast of Buenos Aires province, where my grandfather had a house.
+      And my family and I would regularly spend summers in &quot;Las Toninas&quot;, a little town on the Atlantic coast of Buenos Aires province, where my grandfather had a house.
     </P>
 
     <SectionTitle>The teen years</SectionTitle>
 
     <P>
       High school was not a memorable part of my life. To start with, I went to a private school where I suffered some bullying, especially during the first years.
-      Reasons? I was a little too introverted and some kids there thought they were superior to me. I didn't like futbol a lot and played it worse.
-      Also, I have big ears which won me the "Dumbo" and "Topo Gigio" nicknames.
+      Reasons? I was a little too introverted and some kids there thought they were superior to me. I didn&apos;Mt like futbol a lot and played it worse.
+      Also, I have big ears which won me the &quot;Dumbo&quot; and &quot;Topo Gigio&quot; nicknames.
     </P>
 
     <P>
-      Additionally, I was educated as a Jehova's Witness, where you are taught to be passive and run away from conflict.
+      Additionally, I was educated as a Jehova&apos;Ms Witness, where you are taught to be passive and run away from conflict.
       It is a good thing to avoid getting into a fistfight, but in this world, you also need to defend yourself, and not only from physical abuse.
       JWs also have this doctrine which teaches and forces them not to have any close contact with people that are not JWs.
       They do not celebrate birthdays, Christmas, new year or any kind of popular or patriotic event.
     </P>
 
     <P>
-      Even if I wanted to, I was not allowed to go to birthdays, or to play at patriotic days like "Independence Day" or such.
-      I was not allowed to go to the cyber cafe to play some CounterStrike with the boys, because it was a "violent video game".
-      I was not allowed to see "Pokemón" or "Yu-Gi-Oh!" because pokemons <em>evolve</em> (evolution is bad!) and the latter involves some kind of <em>magic</em>.
+      Even if I wanted to, I was not allowed to go to birthdays, or to play at patriotic days like &quot;Independence Day&quot; or such.
+      I was not allowed to go to the cyber cafe to play some CounterStrike with the boys, because it was a &quot;violent video game&quot;.
+      I was not allowed to see &quot;Pokemón&quot; or &quot;Yu-Gi-Oh!&quot; because pokemons <em>evolve</em> (evolution is bad!) and the latter involves some kind of <em>magic</em>.
     </P>
 
     <P>
-      I was basically not allowed to have any close contact with "mundane" people (that's how they call people that are not JWs). Most of my childhood I spent going from school to home.
-      Each week I'd regularly spent some hours in weekly JW meetings, and studying the Bible as preparation for them. We had meetings at the weekends and we would also go preaching.
-      I was forced to spend around 8 weekly hours in these activities. For some time I thought this was normal, but that wouldn't last forever.
+      I was basically not allowed to have any close contact with &quot;mundane&quot; people (that&apos;Ms how they call people that are not JWs). Most of my childhood I spent going from school to home.
+      Each week I&apos;Md regularly spent some hours in weekly JW meetings, and studying the Bible as preparation for them. We had meetings at the weekends and we would also go preaching.
+      I was forced to spend around 8 weekly hours in these activities. For some time I thought this was normal, but that wouldn&apos;Mt last forever.
     </P>
 
     <P>
@@ -139,7 +140,7 @@ const AboutMe = _props => (
     </P>
 
     <P>
-      Having your own ideas is not good for a JWs. They have "the truth" (they call it that way) set in stone, and there is no room for discussion or wandering among them.
+      Having your own ideas is not good for a JWs. They have &quot;the truth&quot; (they call it that way) set in stone, and there is no room for discussion or wandering among them.
       If I brought any kind of philosophical topics in conversation with my -back then- JWs friends, they would try to quickly dismiss the conversation in fear and panic.
       I began to distantiate from them and vice-versa for this reason.
     </P>
@@ -160,13 +161,14 @@ const AboutMe = _props => (
       Then I took the bad decision to accept cigarettes from a friend at a party. I would smoke a whole pack a day for the following 2 years.
       I was not in good shape. My sleeping schedule was all over the place and I lost a lot of weight.
       That also got me expelled from JWs, because you are not allowed to use substances like tobacco or cannabis.
+      Don&apos;Mt worry, I regained all that weight and a little more, just to be on the safe side :D.
     </P>
 
     <P>
-      It was not like I cared to be part of that organization anymore, but JWs are taught no to have contact with expelled or "ex" JWs.
-      Most of them don't greet you anymore, even if they are in your house or see you in the street.
+      It was not like I cared to be part of that organization anymore, but JWs are taught no to have contact with expelled or &quot;ex&quot; JWs.
+      Most of them don&apos;Mt greet you anymore, even if they are in your house or see you in the street.
       They fear you, like you where some kind of dark influence that could bring disgrace to their lives.
-      And they see you as a failure, a lost sheep. They can't understand that you can not believe the same as them, and that's fine.
+      And they see you as a failure, a lost sheep. They can&apos;Mt understand that you can not believe the same as them, and that&apos;Ms fine.
       I lost close contact with all my JWs friends and family, except for my brother who walked a similar path.
     </P>
 
@@ -193,19 +195,19 @@ const AboutMe = _props => (
       My little family includes two cats, Bianca and Peluso. Together we visited a lot of places in Argentina so far.
     </P>
 
-    <InlineGallery images={[fotosLuz, lagoGutierrez, luzCerroTronador, BiancaYPeluso]} />
+    <Gallery images={[fotosLuz, lagoGutierrez, luzCerroTronador, BiancaYPeluso]} />
 
     <P>
-      Work didn't leave me a lot of free time, but over the years I gained a few hobbies.
-      You may think that I am a "down to earth" kind of guy. You may be right.
+      Work didn&apos;Mt leave me a lot of free time, but over the years I gained a few hobbies.
+      You may think that I am a &quot;down to earth&quot; kind of guy. You may be right.
       With time I begin to enjoy more and more things that are closer to natural, simple life than the modern life we live in the city.
       I also enjoy cyclotouring, trekking, and recently got into fishing.
     </P>
 
-    <InlineGallery images={[peje, bici, casamiento]} />
+    <Gallery images={[peje, bici, casamiento, ogasBrothers]} />
 
     <P>
-      So that's <em>a little bit</em> about me. Hope I haven't bored you. Bye!
+      So that&apos;Ms <em>a little bit</em> about me. Hope I haven&apos;Mt bored you. Bye!
     </P>
   </div>
 )
