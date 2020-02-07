@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import 'normalize.css'
 import 'typeface-roboto'
 
@@ -15,6 +16,7 @@ import AboutMe from './pages/AboutMe'
 import NotFound from './pages/NotFound'
 
 import Navigation from './components/Navigation'
+import { GalleryProvider } from './components/Gallery'
 
 const Root = styled.div`
   display: flex;
@@ -37,19 +39,21 @@ const Body = styled.div`
 
 const App = _props => (
   <Router>
-    <Root>
-      <MainContainer>
-        <Navigation />
+    <GalleryProvider>
+      <Root>
+        <MainContainer>
+          <Navigation />
 
-        <Body>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/about-me' component={AboutMe} />
-            <Route path='*' component={NotFound} />
-          </Switch>
-        </Body>
-      </MainContainer>
-    </Root>
+          <Body>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/about-me' component={AboutMe} />
+              <Route path='*' component={NotFound} />
+            </Switch>
+          </Body>
+        </MainContainer>
+      </Root>
+    </GalleryProvider>
   </Router>
 )
 

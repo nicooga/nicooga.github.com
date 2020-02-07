@@ -37,13 +37,16 @@ const SectionTitle = styled(Typography).attrs({ variant: 'h5', element: 'h2', pa
 const AboutMe = _props => (
   <div>
     <P>
-      I&apos;Mm a young adult, currently living in Buenos Aires, Argentina.
+      I&apos;m a young adult, currently living in Buenos Aires city, capital of Argentina.
     </P>
 
     <P>
       I&apos;ve started building this site as a place to promote my coding skills, but I enjoy a wide range of activities aside from programming.
       Anyway, even if you are here to see if I am a good fit for your development team, it does not hurt to learn a little bit about my life and where I come from.
-      It&apos;s a relatively long story. Here it goes.
+    </P>
+
+    <P>
+      Here it goes.
     </P>
 
     <SectionTitle>The humble origins</SectionTitle>

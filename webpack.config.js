@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.jsx'),
+  devtool: 'source-maps',
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Nicolas Oga',
