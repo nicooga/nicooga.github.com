@@ -112,7 +112,7 @@ const AboutMe = _props => (
     </P>
 
     <P>
-      Additionally, I was educated as a Jehova&apos;Ms Witness, where you are taught to be passive and run away from conflict.
+      Additionally, I was educated as a Jehova&apos;s Witness, where you are taught to be passive and run away from conflict.
       It is a good thing to avoid getting into a fistfight, but in this world, you also need to defend yourself, and not only from physical abuse.
       JWs also have this doctrine which teaches and forces them not to have any close contact with people that are not JWs.
       They do not celebrate birthdays, Christmas, new year or any kind of popular or patriotic event.
@@ -125,7 +125,7 @@ const AboutMe = _props => (
     </P>
 
     <P>
-      I was basically not allowed to have any close contact with &quot;mundane&quot; people (that&apos;Ms how they call people that are not JWs). Most of my childhood I spent going from school to home.
+      I was basically not allowed to have any close contact with &quot;mundane&quot; people (that&apos;s how they call people that are not JWs). Most of my childhood I spent going from school to home.
       Each week I&apos;Md regularly spent some hours in weekly JW meetings, and studying the Bible as preparation for them. We had meetings at the weekends and we would also go preaching.
       I was forced to spend around 8 weekly hours in these activities. For some time I thought this was normal, but that wouldn&apos;Mt last forever.
     </P>
@@ -171,7 +171,7 @@ const AboutMe = _props => (
       It was not like I cared to be part of that organization anymore, but JWs are taught no to have contact with expelled or &quot;ex&quot; JWs.
       Most of them don&apos;Mt greet you anymore, even if they are in your house or see you in the street.
       They fear you, like you where some kind of dark influence that could bring disgrace to their lives.
-      And they see you as a failure, a lost sheep. They can&apos;Mt understand that you can not believe the same as them, and that&apos;Ms fine.
+      And they see you as a failure, a lost sheep. They can&apos;Mt understand that you can not believe the same as them, and that&apos;s fine.
       I lost close contact with all my JWs friends and family, except for my brother who walked a similar path.
     </P>
 
@@ -210,7 +210,7 @@ const AboutMe = _props => (
     <Gallery images={[peje, bici, casamiento, ogasBrothers]} />
 
     <P>
-      So that&apos;Ms <em>a little bit</em> about me. Hope I haven&apos;Mt bored you. Bye!
+      So that&apos;s <em>a little bit</em> about me. Hope I haven&apos;Mt bored you. Bye!
     </P>
   </div>
 )
