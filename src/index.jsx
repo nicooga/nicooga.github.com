@@ -23,7 +23,7 @@ const Root = styled.div`
   justify-content: center;
 
   *, *::after, *::before {
-    box-sizing: border-box;
+    box-sizing: border-box !important;
   }
 `
 

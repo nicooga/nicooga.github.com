@@ -74,7 +74,7 @@ const AboutMe = _props => (
       <Gallery images={[bernasconi, bernasconiPatio, bernasconiTeatro, bernasconiBiblioteca, bernasconiMuseo, bernasconiPileta]} />
 
        &quot;Palace&quot; is not an exaggeration. This school features monumental architecture with classic influence and occupies over 2 regular blocks.
-       It has a theatre, multiple museums, two big patios, climate-controlled swimming pools, dining rooms, a library. And I am probably forgetting something.
+       It has a theatre, multiple museums, two big patios, climate-controlled swimming pools, dining rooms, a library. And I am probably missing something.
     </P>
 
     <P>
@@ -95,7 +95,7 @@ const AboutMe = _props => (
 
     <P>
       Sadly, a lot of the places I mentioned are not conserved in good shape.
-      Maybe, if more tourists knew it&apos;Ms history and came to see them, the government would care a little bit more about keeping them in shape.
+      Maybe, if more tourists knew it&apos;s history and came to see them, the government would care a little bit more about keeping them in shape.
     </P>
 
     <P>

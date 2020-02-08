@@ -36,11 +36,18 @@ const RightArrow = styled.div`
   background-color: white;
 `
 
+const CustomPanner = styled(Panner)`
+  margin: 16px 0;
+  padding: 8px;
+  height: 300px;
+  background-color: whitesmoke;
+`
+
 const Gallery = ({ images }) => {
   const { displayOverlay } = useContext(Context)
 
   return (
-    <Panner>
+    <CustomPanner>
       {images.map((src, index) => (
         <Item
           src={src}
@@ -48,7 +55,7 @@ const Gallery = ({ images }) => {
           onClick={_ => displayOverlay({ images, currentImage: src })}
         />
       ))}
-    </Panner>
+    </CustomPanner>
   )
 }
 

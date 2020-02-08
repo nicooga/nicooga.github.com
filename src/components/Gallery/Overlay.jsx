@@ -1,13 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
-import Button from '@material-ui/core/Button'
-import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
 
 import Context from './Context'
+import Panner from '../Panner'
 
 const STRIP_HEIGHT = '200px'
+const STRIP_PADDING = '8px'
+const CYCLE_BUTTON_PADDING = '40px'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -28,29 +32,36 @@ const Root = styled.div`
 `
 
 const CurrentImageWrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100% - ${STRIP_HEIGHT});
+  flex-grow: 1;
 `
 
 const CurrentImage = styled.img`
   max-width: 100%;
-  max-height: 100%;
+  max-height: calc(100vh - ${STRIP_HEIGHT} - ${STRIP_PADDING} * 2);
 `
 
-const Strip = styled.div`
-  display: flex;
-  justify-content: center;
+const Strip = styled(Panner).attrs({
+  panControlColor: 'rgba(0, 0, 0, 0.95)',
+  center: true
+})`
   background-color: #0c0b0b;
   height: ${STRIP_HEIGHT};
+  padding: ${STRIP_PADDING};
+  width: calc(100% - 16px);
+  flex-shrink: 0;
 `
 
 const StripItem = styled.img`
-  height: calc(100% - 16px);
-  margin: 7px 3.5px;
+  height: calc(100% - 2px);
   border: 1px solid ${props => props.current ? 'white' : 'transparent'};
   cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 8px;j
+  }
 `
 
 const CloseButtonWrapper = styled.div`
@@ -59,15 +70,82 @@ const CloseButtonWrapper = styled.div`
   right: 8px;
 `
 
-const Overlay = ({ images, currentImage }) => {
-  const { hideOverlay, displayOverlay } = useContext(Context)
+const BaseButtonWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`
+
+const PrevButtonWrapper = styled(BaseButtonWrapper)`
+  left: 0;
+  height: 100%;
+  padding-left: ${CYCLE_BUTTON_PADDING};
+`
+
+const NextButtonWrapper = styled(BaseButtonWrapper)`
+  right: 0;
+  padding-right: ${CYCLE_BUTTON_PADDING};
+`
+
+const Overlay = ({ images, currentImage: initialCurrentImage }) => {
+  const { hideOverlay } = useContext(Context)
+  const [currentImage, setCurrentImage] = useState(initialCurrentImage)
+  const [prevImage, setPrevImage] = useState()
+  const [nextImage, setNextImage] = useState()
+
+  useEffect(_ => {
+    const currentImageIndex = images.indexOf(currentImage)
+    setPrevImage(images[currentImageIndex - 1])
+    setNextImage(images[currentImageIndex + 1])
+  }, [currentImage])
+
+  useEffect(_ => {
+    const listener = document.body.addEventListener('keydown', ev => {
+      if (ev.key === 'Escape') {
+        hideOverlay()
+      } else if (ev.key === 'ArrowLeft') {
+        displayPrevImage()
+      } else if (ev.key === 'ArrowRight') {
+        displayNextImage()
+      }
+    })
+
+    return _ => document.body.removeEventListener('keydown', listener)
+  }, [prevImage, nextImage])
+
+  const displayPrevImage = _ => prevImage && setCurrentImage(prevImage)
+  const displayNextImage = _ => nextImage && setCurrentImage(nextImage)
 
   return (
     <>
       <GlobalStyle />
       <Root>
         <CurrentImageWrapper>
+          {prevImage && (
+            <PrevButtonWrapper>
+              <IconButton>
+                <ArrowBackIosIcon
+                  style={{ color: 'white' }}
+                  onClick={displayPrevImage}
+                />
+              </IconButton>
+            </PrevButtonWrapper>
+          )}
+
           <CurrentImage src={currentImage} />
+
+          {nextImage && (
+            <NextButtonWrapper>
+              <IconButton>
+                <ArrowForwardIosIcon
+                  style={{ color: 'white' }}
+                  onClick={displayNextImage}
+                />
+              </IconButton>
+            </NextButtonWrapper>
+          )}
         </CurrentImageWrapper>
 
         <Strip>
@@ -75,7 +153,7 @@ const Overlay = ({ images, currentImage }) => {
             <StripItem
               src={image}
               key={index}
-              onClick={_ => displayOverlay({ images, currentImage: image })}
+              onClick={_ => setCurrentImage(image)}
               current={image === currentImage}
             />
           ))}

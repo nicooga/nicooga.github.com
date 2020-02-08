@@ -1,36 +1,26 @@
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 
-import MaterialUIIconButton from '@material-ui/core/IconButton'
+import IconButton from '@material-ui/core/IconButton'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
 
-const ROOT_PADDING = 8
-const PADDING_A = '10px'
-const PADDING_B = '60px'
-const PAN_BACKGROUND = 'black'
+const PAN_CONTROL_OUTTER_PADDING = '30px'
+const PAN_CONTROL_INNER_PADDING = '60px'
 const PANNING_INTERVAL = 1
 const PANNING_AMOUNT = 5
-
-const IconButton = styled(MaterialUIIconButton)`
-  pointer-events: all !important;
-`
 
 const Root = styled.span`
   display: block;
   position: relative;
   width: 100%;
-  overflow: hidden;
-  margin: 16px 0;
-  background-color: black;
-  padding: ${ROOT_PADDING}px;
 `
 
-const Wrapper = styled.span`
-  display: block;
+const Strip = styled.span`
   display: flex;
-  height: 300px;
-  transform: translate(${props => props.offset}px);
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 `
 
 const PanControl = styled.span`
@@ -42,20 +32,22 @@ const PanControl = styled.span`
   align-items: center;
   cursor: wait;
   z-index: 1;
+  opacity: ${props => props.visible ? 1 : 0};
+  transition: opacity 400ms;
 `
 
 const LeftPanControl = styled(PanControl)`
   left: 0;
-  padding-left: ${PADDING_A};
-  padding-right: ${PADDING_B};
-  background: linear-gradient(90deg, ${PAN_BACKGROUND} 0%, transparent 100%);
+  padding-left: ${PAN_CONTROL_OUTTER_PADDING};
+  padding-right: ${PAN_CONTROL_INNER_PADDING};
+  background: linear-gradient(to right, ${props => props.color}, transparent);
 `
 
 const RightPanControl = styled(PanControl)`
   right: 0;
-  padding-left: ${PADDING_B};
-  padding-right: ${PADDING_A};
-  background: linear-gradient(90deg, transparent 0%, ${PAN_BACKGROUND} 100%);
+  padding-left: ${PAN_CONTROL_INNER_PADDING};
+  padding-right: ${PAN_CONTROL_OUTTER_PADDING};
+  background: linear-gradient(to left, ${props => props.color}, transparent);
 `
 
 const allImagesLoaded = node => {
@@ -69,36 +61,37 @@ const allImagesLoaded = node => {
   return Promise.all(promises)
 }
 
-const Panner = ({ children, className }) => {
-  const [maxOffset, setMaxOffset] = useState()
+// This component replaces a horizontal scroll bar with mouseover behavior.
+const Panner = ({ children, className, panControlColor, center }) => {
+  const rootNode = useRef()
   const [displayArrows, setDisplayArrows] = useState(false)
-  const [offset, setOffset] = useState(0)
   const [panning, setPanning] = useState(false)
+  const [scrollLeft, setScrollLeft] = useState(0)
+  const maxScroll = useRef()
   const panningInterval = useRef()
 
-  const ref = useCallback(async node => {
-    if (!node) { return }
-    await allImagesLoaded(node)
-    if (node.scrollWidth > node.clientWidth) {
-      setMaxOffset(node.clientWidth - node.scrollWidth - ROOT_PADDING)
-      setDisplayArrows(true)
-    }
-  })
+  useEffect(_ => {
+    if (!rootNode.current) { return }
+
+    (async _ => {
+      if (!rootNode.current) { return }
+      await allImagesLoaded(rootNode.current)
+      if (rootNode.current.scrollWidth > rootNode.current.clientWidth) {
+        maxScroll.current = rootNode.current.scrollWidth - rootNode.current.clientWidth
+        setDisplayArrows(true)
+      }
+    })()
+  }, [rootNode])
 
   const startPanningLeft = _ => {
-    if (panning || offset >= 0) { return }
-    
+    if (panning) { return }
     setPanning(true)
 
     panningInterval.current = setInterval(
-      _ => setOffset(o => {
-        if (o >= 0) {
-          stopPanning()
-          return o
-        } else {
-          return o + PANNING_AMOUNT
-        }
-      }),
+      _ => {
+        rootNode.current.scrollLeft -= PANNING_AMOUNT
+        setScrollLeft(rootNode.current.scrollLeft)
+      },
       PANNING_INTERVAL
     )
   }
@@ -108,15 +101,13 @@ const Panner = ({ children, className }) => {
 
     setPanning(true)
 
+    const remainingScroll = maxScroll.current - rootNode.current.scrollLeft
+
     panningInterval.current = setInterval(
-      _ => setOffset(o => {
-        if (o < maxOffset) {
-          stopPanning()
-          return o
-        } else {
-          return o - PANNING_AMOUNT
-        }
-      }),
+      _ => {
+        rootNode.current.scrollLeft += Math.min(PANNING_AMOUNT, remainingScroll)
+        setScrollLeft(rootNode.current.scrollLeft)
+      } ,
       PANNING_INTERVAL
     )
   }
@@ -127,28 +118,33 @@ const Panner = ({ children, className }) => {
   }
 
   return (
-    <Root className={className} ref={ref}>
-      {displayArrows && !(offset >= 0) && (
-        <LeftPanControl onMouseEnter={startPanningLeft} onMouseLeave={stopPanning}>
-          <IconButton>
-            <ArrowBackIosIcon style={{ color: 'white' }} />
-          </IconButton>
-        </LeftPanControl>
+    <Root className={className}>
+      {displayArrows && rootNode.current && (
+        <>
+          <LeftPanControl onMouseEnter={startPanningLeft} onMouseLeave={stopPanning} color={panControlColor} visible={scrollLeft > 0}>
+            <IconButton>
+              <ArrowBackIosIcon style={{ color: 'white' }} />
+            </IconButton>
+          </LeftPanControl>
+
+          <RightPanControl onMouseEnter={startPanningRight} onMouseLeave={stopPanning} color={panControlColor} visible={scrollLeft < maxScroll.current}>
+            <IconButton>
+              <ArrowForwardIosIcon style={{ color: 'white' }} />
+            </IconButton>
+          </RightPanControl>
+        </>
       )}
 
-      <Wrapper style={{ transform: `translate(${offset}px)` }}>
+      <Strip ref={rootNode} style={{ justifyContent: center && !displayArrows && 'center' }}>
         {children}
-      </Wrapper>
-
-      {displayArrows && !(offset < maxOffset) && (
-        <RightPanControl onMouseEnter={startPanningRight} onMouseLeave={stopPanning}>
-          <IconButton>
-            <ArrowForwardIosIcon style={{ color: 'white' }} />
-          </IconButton>
-        </RightPanControl>
-      )}
+      </Strip>
     </Root>
   )
+}
+
+Panner.defaultProps = {
+  panControlColor: 'rgba(256, 256, 256, 0.7)',
+  center: false
 }
 
 export default Panner
