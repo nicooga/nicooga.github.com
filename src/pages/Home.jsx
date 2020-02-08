@@ -20,17 +20,17 @@ const Home = _props => (
     <Typography variant='body1' paragraph>
       Hello there!
       <br />
-      I&quot;m Nicolas, a guy that lives in Argentina.
+      I&apos;m Nicolas, a guy that lives in Argentina.
     </Typography>
 
     <Typography variant='body1' paragraph>
-      You are probably here because you saw the link to my website in LinkedIn or some work related site.
+      You are probably here because you saw the link to my website in LinkedIn or some work-related site.
       <br />
-      If that&quot;s the case you most likely want to know what I can say <Button href='/about-software'>about software</Button>.
+      If that&apos;s the case you most likely want to know what I can say <Button href='/about-software'>about software</Button>, or maybe <Button href='/contact'>contact me</Button>? Don&apos;t be shy!
     </Typography>
 
     <Typography variant='body1' paragraph>
-      Otherwise, I plan to post <Button href='/about-stuff'>about other stuff</Button> I&quot;m intersted in the future.
+      Otherwise, I plan to post <Button href='/about-stuff'>about other stuff</Button> I&apos;m interested in in the future.
     </Typography>
 
     <Typography variant='body1' paragraph>
