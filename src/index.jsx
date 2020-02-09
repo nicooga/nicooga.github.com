@@ -11,8 +11,11 @@ import {
   Route
 } from 'react-router-dom'
 
+import ThemeProvider from './ThemeProvider'
+
 import Home from './pages/Home'
 import AboutMe from './pages/AboutMe'
+import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 
 import Navigation from './components/Navigation'
@@ -21,10 +24,6 @@ import { GalleryProvider } from './components/Gallery'
 const Root = styled.div`
   display: flex;
   justify-content: center;
-
-  *, *::after, *::before {
-    box-sizing: border-box !important;
-  }
 `
 
 const MainContainer = styled.div`
@@ -34,27 +33,30 @@ const MainContainer = styled.div`
 `
 
 const Body = styled.div`
-  padding: 0 8px;
+  padding: 40px 8px;
 `
 
 const App = _props => (
-  <Router>
+  <ThemeProvider>
     <GalleryProvider>
-      <Root>
-        <MainContainer>
-          <Navigation />
+      <Router>
+        <Root>
+          <MainContainer>
+            <Navigation />
 
-          <Body>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/about-me' component={AboutMe} />
-              <Route path='*' component={NotFound} />
-            </Switch>
-          </Body>
-        </MainContainer>
-      </Root>
+            <Body>
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path='/about-me' component={AboutMe} />
+                <Route path='/contact' component={Contact} />
+                <Route path='*' component={NotFound} />
+              </Switch>
+            </Body>
+          </MainContainer>
+        </Root>
+      </Router>
     </GalleryProvider>
-  </Router>
+  </ThemeProvider>
 )
 
 ReactDOM.render(<App />, document.getElementById('root'))

@@ -15,6 +15,10 @@ const Button = styled(MaterialUIButton)`
   text-transform: capitalize !important;
 `
 
+const Spacer = styled.span`
+  flex-grow: 1;
+`
+
 const Link = ({ to, children }) => ( // eslint-disable-line react/prop-types
   <Button component={RouterLink} to={to} size='small'>{children}</Button>
 )
@@ -27,12 +31,14 @@ const Navigation = _props => (
       </Typography>
     </Link>
 
+    <Spacer />
+
     <Link to='/'>Home</Link>
     <Link to='/about-me'>About Me</Link>
     <Link to='/about-software'>About Software</Link>
     <Link to='/about-stuff'>About Stuff</Link>
     <Link to='/all-posts'>All posts</Link>
-    <Link to='/contact'>Contact</Link>
+    <Link to='/contact'>Contact and links</Link>
   </Root>
 )
 

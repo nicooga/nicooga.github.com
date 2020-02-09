@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import MaterialUIButton from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
-const Button = styled(MaterialUIButton).attrs({ size: 'small' })`
+const Button = styled(MaterialUIButton).attrs({ size: 'small', color: 'primary' })`
   text-transform: none !important;
   font-size: inherit !important;
   font-weight: inherit !important;
@@ -12,30 +12,31 @@ const Button = styled(MaterialUIButton).attrs({ size: 'small' })`
   line-height: inherit !important;
   padding: 0 3px !important;
   margin: 0 -3px !important;
-  color: tomato !important;
 `
+
+const P = styled(Typography).attrs({ variant: 'body1', paragraph: true })``
 
 const Home = _props => (
   <div>
-    <Typography variant='body1' paragraph>
+    <P>
       Hello there!
       <br />
       I&apos;m Nicolas, a guy that lives in Argentina.
-    </Typography>
+    </P>
 
-    <Typography variant='body1' paragraph>
+    <P>
       You are probably here because you saw the link to my website in LinkedIn or some work-related site.
       <br />
       If that&apos;s the case you most likely want to know what I can say <Button href='/about-software'>about software</Button>, or maybe <Button href='/contact'>contact me</Button>? Don&apos;t be shy!
-    </Typography>
+    </P>
 
-    <Typography variant='body1' paragraph>
+    <P>
       Otherwise, I plan to post <Button href='/about-stuff'>about other stuff</Button> I&apos;m interested in in the future.
-    </Typography>
+    </P>
 
-    <Typography variant='body1' paragraph>
+    <P>
       You can also check what I can <Button href='/about-me'>say about me</Button>.
-    </Typography>
+    </P>
   </div>
 )
 
