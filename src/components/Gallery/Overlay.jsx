@@ -92,17 +92,15 @@ const NextButtonWrapper = styled(BaseButtonWrapper)`
 const Overlay = ({ images, currentImage: initialCurrentImage }) => {
   const { hideOverlay } = useContext(Context)
   const [currentImage, setCurrentImage] = useState(initialCurrentImage)
-  const [prevImage, setPrevImage] = useState()
-  const [nextImage, setNextImage] = useState()
+
+  const currentImageIndex = images.indexOf(currentImage)
+  const prevImage = images[currentImageIndex - 1]
+  const nextImage = images[currentImageIndex + 1]
+  const displayPrevImage = _ => prevImage && setCurrentImage(prevImage)
+  const displayNextImage = _ => nextImage && setCurrentImage(nextImage)
 
   useEffect(_ => {
-    const currentImageIndex = images.indexOf(currentImage)
-    setPrevImage(images[currentImageIndex - 1])
-    setNextImage(images[currentImageIndex + 1])
-  }, [currentImage])
-
-  useEffect(_ => {
-    const listener = document.body.addEventListener('keydown', ev => {
+    const listener = ev => {
       if (ev.key === 'Escape') {
         hideOverlay()
       } else if (ev.key === 'ArrowLeft') {
@@ -110,13 +108,11 @@ const Overlay = ({ images, currentImage: initialCurrentImage }) => {
       } else if (ev.key === 'ArrowRight') {
         displayNextImage()
       }
-    })
+    }
 
+    document.body.addEventListener('keydown', listener)
     return _ => document.body.removeEventListener('keydown', listener)
-  }, [prevImage, nextImage])
-
-  const displayPrevImage = _ => prevImage && setCurrentImage(prevImage)
-  const displayNextImage = _ => nextImage && setCurrentImage(nextImage)
+  }, [currentImage])
 
   return (
     <>
@@ -125,11 +121,8 @@ const Overlay = ({ images, currentImage: initialCurrentImage }) => {
         <CurrentImageWrapper>
           {prevImage && (
             <PrevButtonWrapper>
-              <IconButton>
-                <ArrowBackIosIcon
-                  style={{ color: 'white' }}
-                  onClick={displayPrevImage}
-                />
+              <IconButton onClick={displayPrevImage}>
+                <ArrowBackIosIcon style={{ color: 'white' }} />
               </IconButton>
             </PrevButtonWrapper>
           )}
@@ -138,11 +131,8 @@ const Overlay = ({ images, currentImage: initialCurrentImage }) => {
 
           {nextImage && (
             <NextButtonWrapper>
-              <IconButton>
-                <ArrowForwardIosIcon
-                  style={{ color: 'white' }}
-                  onClick={displayNextImage}
-                />
+              <IconButton onClick={displayNextImage}>
+                <ArrowForwardIosIcon style={{ color: 'white' }} />
               </IconButton>
             </NextButtonWrapper>
           )}
@@ -155,6 +145,12 @@ const Overlay = ({ images, currentImage: initialCurrentImage }) => {
               key={index}
               onClick={_ => setCurrentImage(image)}
               current={image === currentImage}
+              ref={node => {
+                if (!node) { return }
+                if (image === currentImage) {
+                  node.scrollIntoView()
+                }
+              }}
             />
           ))}
         </Strip>

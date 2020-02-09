@@ -56,6 +56,7 @@ const ContactLinksRoot = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: end;
 `
 
 const ContactLinkRoot = styled.div`
@@ -72,7 +73,6 @@ const ContactLinkDescription = styled.span`
   height: 30px;
   opacity: ${props => props.visible ? 1 : 0};
   transition: opacity 500ms;
-  text-align: center;
 `
 
 const ContactLinks = _props => {
