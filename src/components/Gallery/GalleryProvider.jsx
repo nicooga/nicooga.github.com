@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import Context from './Context'
 import Overlay from './Overlay'
@@ -22,6 +23,10 @@ const GalleryProvider = ({ children }) => {
       {children}
     </Context.Provider>
   )
+}
+
+GalleryProvider.propTypes = {
+  children: PropTypes.node
 }
 
 export default GalleryProvider

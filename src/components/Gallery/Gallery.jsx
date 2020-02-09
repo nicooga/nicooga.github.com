@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -16,24 +16,6 @@ const Item = styled.img`
   }
 
   cursor: zoom-in;
-`
-
-const LeftArrow = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 100%;
-  background-color: tomato;
-`
-
-const RightArrow = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20px;
-  height: 100%;
-  background-color: white;
 `
 
 const CustomPanner = styled(Panner)`

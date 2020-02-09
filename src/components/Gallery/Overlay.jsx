@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import styled, { createGlobalStyle } from 'styled-components'
 
 import IconButton from '@material-ui/core/IconButton'
@@ -163,6 +164,11 @@ const Overlay = ({ images, currentImage: initialCurrentImage }) => {
       </Root>
     </>
   )
+}
+
+Overlay.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentImage: PropTypes.string.isRequired
 }
 
 export default Overlay

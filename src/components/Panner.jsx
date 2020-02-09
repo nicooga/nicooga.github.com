@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import IconButton from '@material-ui/core/IconButton'
@@ -107,7 +108,7 @@ const Panner = ({ children, className, panControlColor, center }) => {
       _ => {
         rootNode.current.scrollLeft += Math.min(PANNING_AMOUNT, remainingScroll)
         setScrollLeft(rootNode.current.scrollLeft)
-      } ,
+      },
       PANNING_INTERVAL
     )
   }
@@ -145,6 +146,13 @@ const Panner = ({ children, className, panControlColor, center }) => {
 Panner.defaultProps = {
   panControlColor: 'rgba(256, 256, 256, 0.7)',
   center: false
+}
+
+Panner.propTypes = {
+  panControlColor: PropTypes.string,
+  center: PropTypes.bool,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired
 }
 
 export default Panner

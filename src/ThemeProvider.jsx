@@ -1,5 +1,6 @@
 import React from 'react'
-import { createMuiTheme, makeStyles, ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import { createMuiTheme, ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import orange from '@material-ui/core/colors/orange'
 import yellow from '@material-ui/core/colors/yellow'
 
@@ -16,6 +17,10 @@ const ThemeProvider = ({ children }) => {
       {children}
     </MuiThemeProvider>
   )
+}
+
+ThemeProvider.propTypes = {
+  children: PropTypes.element.isRequired
 }
 
 export default ThemeProvider
