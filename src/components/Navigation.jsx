@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, matchPath, withRouter } from 'react-router-dom'
 
 import MaterialUIButton from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
@@ -19,13 +19,26 @@ const Spacer = styled.span`
   flex-grow: 1;
 `
 
-const Link = ({ to, children }) => ( // eslint-disable-line react/prop-types
-  <Button component={RouterLink} to={to} size='small'>{children}</Button>
-)
+// I want my link to react to route changes to re-calculate "isActive" value.
+// withRouter HoC does exactly that.
+const Link = withRouter(({ to, children, location, skipActiveStyle }) => { // eslint-disable-line react/prop-types
+  const isActive = !skipActiveStyle && matchPath(location.pathname, { path: to, exact: true }) !== null
+
+  return (
+    <Button
+      component={RouterLink}
+      to={to}
+      variant={isActive ? 'contained' : 'text'}
+      color={isActive ? 'primary' : 'default'}
+    >
+      {children}
+    </Button>
+  )
+})
 
 const Navigation = _props => (
   <Root>
-    <Link to='/'>
+    <Link to='/' skipActiveStyle>
       <Typography variant='h4' element='h1'>
         Nicolas Oga
       </Typography>

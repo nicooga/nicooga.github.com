@@ -39,10 +39,10 @@ const LINK_CONFIG = [
 
 const Root = styled.div`
   display:  flex;
+  justify-content: space-between;
 `
 
 const FormSection = styled.div`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,6 +75,12 @@ const ContactLinkDescription = styled.span`
   transition: opacity 500ms;
 `
 
+const LeftColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-context: center;
+`
+
 const ContactLinks = _props => {
   const [currentDesc, setCurrentDesc] = useState()
 
@@ -97,7 +103,7 @@ const ContactLinks = _props => {
       )}
 
       <ContactLinkDescription visible={!!currentDesc}>
-        <Typography variant='body2'>
+        <Typography variant='body1'>
           {currentDesc}
         </Typography>
       </ContactLinkDescription>
@@ -108,11 +114,17 @@ const ContactLinks = _props => {
 const Contact = _props => {
   return (
     <Root>
-      <ContactLinks />
+      <LeftColumn>
+        <Typography variant='body1' paragraph>
+          Find me at these places ...
+        </Typography>
+
+        <ContactLinks />
+      </LeftColumn>
 
       <FormSection>
         <Typography variant='body1' paragraph>
-          ... or simple use this contact form
+          ... or simply use this contact form
         </Typography>
 
         <ContactForm />

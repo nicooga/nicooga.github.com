@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
 
 import Gallery from '../../components/Gallery'
+import P from '../../components/Paragraph'
+import PostSectionTitle from '../../components/PostSectionTitle'
 
 import barElChino from './bar-el-chino.jpg'
 import barElChino2 from './bar-el-chino-2.jpg'
@@ -28,12 +30,6 @@ import bici from './bici.jpg'
 import casamiento from './casamiento.jpg'
 import ogasBrothers from './ogas_brothers.jpg'
 
-const P = styled(Typography).attrs({ variant: 'body1', paragraph: true })``
-
-const SectionTitle = styled(Typography).attrs({ variant: 'h5', element: 'h2', paragraph: true })`
-  border-bottom: 1px solid lightgrey;
-`
-
 const AboutMe = _props => (
   <div>
     <P>
@@ -49,7 +45,7 @@ const AboutMe = _props => (
       Here it goes.
     </P>
 
-    <SectionTitle>The humble origins</SectionTitle>
+    <PostSectionTitle>The humble origins</PostSectionTitle>
 
     <P>
       I spent most of my childhood around the neighbourhoods of <em>Pompeya</em> and <em>Parque Patricios</em>, on the south edge of the city of Buenos Aires.
@@ -103,7 +99,7 @@ const AboutMe = _props => (
       And my family and I would regularly spend summers in &quot;Las Toninas&quot;, a little town on the Atlantic coast of Buenos Aires province, where my grandfather had a house.
     </P>
 
-    <SectionTitle>The teen years</SectionTitle>
+    <PostSectionTitle>The teen years</PostSectionTitle>
 
     <P>
       High school was not a memorable part of my life. To start with, I went to a private school where I suffered some bullying, especially during the first years.
@@ -175,7 +171,7 @@ const AboutMe = _props => (
       I lost close contact with all my JWs friends and family, except for my brother who walked a similar path.
     </P>
 
-    <SectionTitle>Adult life, recent history</SectionTitle>
+    <PostSectionTitle>Adult life, recent history</PostSectionTitle>
 
     <P>
       Years and maturity help me filter the good from the bad. Some of the values I learned as a JW stayed with me: honesty, altruism, respect.

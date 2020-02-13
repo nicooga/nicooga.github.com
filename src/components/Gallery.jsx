@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import Panner from '../Panner'
-import Context from './Context'
+import Panner from './Panner'
+import { useGalleryOverlay } from './GalleryOverlay'
 
 const Item = styled.img`
   display: block;
@@ -26,7 +26,7 @@ const CustomPanner = styled(Panner)`
 `
 
 const Gallery = ({ images }) => {
-  const { displayOverlay } = useContext(Context)
+  const { displayOverlay } = useGalleryOverlay()
 
   return (
     <CustomPanner>

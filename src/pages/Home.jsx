@@ -1,20 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import MaterialUIButton from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
-
-const Button = styled(MaterialUIButton).attrs({ size: 'small', color: 'primary' })`
-  text-transform: none !important;
-  font-size: inherit !important;
-  font-weight: inherit !important;
-  font-family: inherit !important;
-  line-height: inherit !important;
-  padding: 0 3px !important;
-  margin: 0 -3px !important;
-`
-
-const P = styled(Typography).attrs({ variant: 'body1', paragraph: true })``
+import P from '../components/Paragraph'
+import A from '../components/InlineHyperLink'
+import PostList from '../components/PostList'
 
 const Home = _props => (
   <div>
@@ -27,16 +16,22 @@ const Home = _props => (
     <P>
       You are probably here because you saw the link to my website in LinkedIn or some work-related site.
       <br />
-      If that&apos;s the case you most likely want to know what I can say <Button href='/about-software'>about software</Button>, or maybe <Button href='/contact'>contact me</Button>? Don&apos;t be shy!
+      If that&apos;s the case you most likely want to know what I can say <A to='/about-software'>about software</A>, or maybe <A to='/contact'>contact me</A>? Don&apos;t be shy!
     </P>
 
     <P>
-      Otherwise, I plan to post <Button href='/about-stuff'>about other stuff</Button> I&apos;m interested in in the future.
+      Otherwise, I plan to post <A to='/about-stuff'>about other stuff</A> I&apos;m interested in in the future.
     </P>
 
     <P>
-      You can also check what I can <Button href='/about-me'>say about me</Button>.
+      You can also check what I can <A to='/about-me'>say about me</A>.
     </P>
+
+    <P>
+      Or take a look at my latest posts:
+    </P>
+
+    <PostList limit={5} />
   </div>
 )
 

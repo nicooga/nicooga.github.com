@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Context from './Context'
-import Overlay from './Overlay'
+import GalleryOverlay from './GalleryOverlay'
 
-const GalleryProvider = ({ children }) => {
+const GalleryOverlayProvider = ({ children }) => {
   const [active, setActive] = useState(false)
   const [images, setImages] = useState()
   const [currentImage, setCurrentImage] = useState()
@@ -19,14 +19,14 @@ const GalleryProvider = ({ children }) => {
 
   return (
     <Context.Provider value={{ displayOverlay, hideOverlay }}>
-      {active && <Overlay images={images} currentImage={currentImage} />}
+      {active && <GalleryOverlay images={images} currentImage={currentImage} />}
       {children}
     </Context.Provider>
   )
 }
 
-GalleryProvider.propTypes = {
+GalleryOverlayProvider.propTypes = {
   children: PropTypes.node
 }
 
-export default GalleryProvider
+export default GalleryOverlayProvider

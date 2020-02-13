@@ -40,11 +40,6 @@ const CurrentImageWrapper = styled.div`
   flex-grow: 1;
 `
 
-const CurrentImage = styled.img`
-  max-width: 100%;
-  max-height: calc(100vh - ${STRIP_HEIGHT} - ${STRIP_PADDING} * 2);
-`
-
 const Strip = styled(Panner).attrs({
   panControlColor: 'rgba(0, 0, 0, 0.95)',
   center: true
@@ -90,7 +85,7 @@ const NextButtonWrapper = styled(BaseButtonWrapper)`
   padding-right: ${CYCLE_BUTTON_PADDING};
 `
 
-const Overlay = ({ images, currentImage: initialCurrentImage }) => {
+const GalleryOverlay = ({ images, currentImage: initialCurrentImage }) => {
   const { hideOverlay } = useContext(Context)
   const [currentImage, setCurrentImage] = useState(initialCurrentImage)
 
@@ -114,6 +109,11 @@ const Overlay = ({ images, currentImage: initialCurrentImage }) => {
     document.body.addEventListener('keydown', listener)
     return _ => document.body.removeEventListener('keydown', listener)
   }, [currentImage])
+
+  const CurrentImage = styled.img`
+    max-width: 100%;
+    max-height: calc(100vh - ${images.length > 0 ? STRIP_HEIGHT : '0px'} - ${STRIP_PADDING} * 2);
+  `
 
   return (
     <>
@@ -139,22 +139,24 @@ const Overlay = ({ images, currentImage: initialCurrentImage }) => {
           )}
         </CurrentImageWrapper>
 
-        <Strip>
-          {images.map((image, index) => (
-            <StripItem
-              src={image}
-              key={index}
-              onClick={_ => setCurrentImage(image)}
-              current={image === currentImage}
-              ref={node => {
-                if (!node) { return }
-                if (image === currentImage) {
-                  node.scrollIntoView()
-                }
-              }}
-            />
-          ))}
-        </Strip>
+        {images.length > 0 && (
+          <Strip>
+            {images.map((image, index) => (
+              <StripItem
+                src={image}
+                key={index}
+                onClick={_ => setCurrentImage(image)}
+                current={image === currentImage}
+                ref={node => {
+                  if (!node) { return }
+                  if (image === currentImage) {
+                    node.scrollIntoView()
+                  }
+                }}
+              />
+            ))}
+          </Strip>
+        )}
 
         <CloseButtonWrapper>
           <IconButton onClick={hideOverlay}>
@@ -166,9 +168,13 @@ const Overlay = ({ images, currentImage: initialCurrentImage }) => {
   )
 }
 
-Overlay.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+GalleryOverlay.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string),
   currentImage: PropTypes.string.isRequired
 }
 
-export default Overlay
+GalleryOverlay.defaultProps = {
+  images: []
+}
+
+export default GalleryOverlay
