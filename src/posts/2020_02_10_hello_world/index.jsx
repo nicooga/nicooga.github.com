@@ -98,7 +98,9 @@ const Post = _props => (
 )
 
 const post = {
-  date: new Date(2020, 2, 10),
+  // Here "1" stands for February. Initially I put "2", but I was seeing March when displaying the date.
+  // Took me some time to understand what was happening. This is why I love-hate JS.
+  date: new Date(2020, 1, 10),
   title: 'Hello World',
   description: 'Let me introduce you to this little site',
   component: Post,
