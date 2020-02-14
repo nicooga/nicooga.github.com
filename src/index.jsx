@@ -21,7 +21,7 @@ import PostViewer from './pages/PostViewer'
 import NotFound from './pages/NotFound'
 
 import PostList from './components/PostList'
-
+import Footer from './components/Footer'
 import Navigation from './components/Navigation'
 import { GalleryOverlayProvider } from './components/GalleryOverlay'
 
@@ -33,11 +33,14 @@ const Root = styled.div`
 const MainContainer = styled.div`
   width: 1000px;
   max-width: 100%;
-  margin: 70px 0;
+  margin-top: 70px;
 `
 
+// 361px here is a migic number which sums all the vertical space taken by navigation, footer and the margin of other elements.
+// No one likes magic numbers, but in this case is not a big deal.
 const Body = styled.div`
   padding: 40px 0 0 8px;
+  min-height: calc(100vh - 291px);
 `
 
 const App = _props => (
@@ -61,7 +64,10 @@ const App = _props => (
                 <Route path='*' component={NotFound} />
               </Switch>
             </Body>
+
+            <Footer />
           </MainContainer>
+
         </Root>
       </Router>
     </GalleryOverlayProvider>

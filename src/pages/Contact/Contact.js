@@ -6,7 +6,7 @@ import MuiButton from '@material-ui/core/Button'
 
 import ContactForm from './ContactForm'
 
-import GitHubIcon from './github-logo.svg'
+import GitHubIcon from '../../assets/github-logo.svg'
 import LinkedInIcon from './linkedin.svg'
 import StackOverflow from './stackoverflow.svg'
 import EmailIcon from '@material-ui/icons/Email'

@@ -206,7 +206,7 @@ const AboutMe = _props => (
     <Gallery images={[peje, bici, casamiento, ogasBrothers]} />
 
     <P>
-      So that&apos;s <em>a little bit</em> about me. Hope I haven&apos;Mt bored you. Bye!
+      So that&apos;s <em>a little bit</em> about me. Hope I haven&apos;t bored you. Bye!
     </P>
   </div>
 )

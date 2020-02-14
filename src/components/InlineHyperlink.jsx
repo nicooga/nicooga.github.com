@@ -6,9 +6,10 @@ import Button from '@material-ui/core/Button'
 
 const InlineHyperLink = styled(Button).attrs(props => ({
   ...(props.external ? { rel: 'noopener', target: '_blank' } : {}),
-  size: 'small',
-  color: 'primary',
-  component: props.external ? 'a' : RouterLink
+  size: props.size || 'small',
+  color: props.color || 'primary',
+  component: props.external ? 'a' : RouterLink,
+  children: props.children || props.href
 }))`
   text-transform: none !important;
   font-size: inherit !important;

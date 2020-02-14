@@ -5,14 +5,12 @@ import { Link as RouterLink, matchPath, withRouter } from 'react-router-dom'
 import MaterialUIButton from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
+import Button from './Button'
+
 const Root = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 40px;
-`
-
-const Button = styled(MaterialUIButton)`
-  text-transform: capitalize !important;
 `
 
 const Spacer = styled.span`
