@@ -2,14 +2,19 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const htmlPlugin = filename =>
+  new HtmlWebpackPlugin({
+    filename,
+    title: 'Nicolas Oga',
+    template: 'src/index.html'
+  })
+
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.jsx'),
   devtool: 'source-maps',
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Nicolas Oga',
-      template: 'src/index.html'
-    })
+    htmlPlugin('index.html'),
+    htmlPlugin('404.html'),
   ],
   module: {
     rules: [
