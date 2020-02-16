@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import Panner from './Panner'
 import { useGalleryOverlay } from './GalleryOverlay'
@@ -21,8 +22,16 @@ const Item = styled.img`
 const CustomPanner = styled(Panner)`
   margin: 16px 0;
   padding: 8px;
-  height: 300px;
-  background-color: whitesmoke;
+  background: linear-gradient(to right, transparent, whitesmoke);
+  height: 100px;
+
+  ${breakpoint('tablet')`
+    height: 150px;
+  `}
+
+  ${breakpoint('desktop')`
+    height: 200px;
+  `}
 `
 
 const Gallery = ({ images }) => {

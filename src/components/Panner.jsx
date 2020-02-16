@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import IconButton from '@material-ui/core/IconButton'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
@@ -15,6 +16,7 @@ const Root = styled.span`
   display: block;
   position: relative;
   width: 100%;
+  box-sizing: border-box;
 `
 
 const Strip = styled.span`
@@ -35,6 +37,10 @@ const PanControl = styled.span`
   z-index: 1;
   opacity: ${props => props.visible ? 1 : 0};
   transition: opacity 400ms;
+
+  ${breakpoint('mobile', 'tablet')`
+    pointer-events: none;
+  `}
 `
 
 const LeftPanControl = styled(PanControl)`
@@ -70,6 +76,7 @@ const Panner = ({ children, className, panControlColor, center }) => {
   const [scrollLeft, setScrollLeft] = useState(0)
   const maxScroll = useRef()
   const panningInterval = useRef()
+  const lastTouch = useRef()
 
   useEffect(_ => {
     if (!rootNode.current) { return }
@@ -84,42 +91,46 @@ const Panner = ({ children, className, panControlColor, center }) => {
     })()
   }, [rootNode])
 
-  const startPanningLeft = _ => {
-    if (panning) { return }
-    setPanning(true)
+  const scroll = amount => {
+    if (amount > 0) {
+      const remainingScroll = maxScroll.current - rootNode.current.scrollLeft
+      rootNode.current.scrollLeft += Math.min(remainingScroll, amount)
+    } else {
+      rootNode.current.scrollLeft += amount
+    }
 
-    panningInterval.current = setInterval(
-      _ => {
-        rootNode.current.scrollLeft -= PANNING_AMOUNT
-        setScrollLeft(rootNode.current.scrollLeft)
-      },
-      PANNING_INTERVAL
-    )
+    setScrollLeft(rootNode.current.scrollLeft)
   }
 
-  const startPanningRight = _ => {
+  const startPanning = amountPerTick => {
     if (panning) { return }
-
     setPanning(true)
-
-    const remainingScroll = maxScroll.current - rootNode.current.scrollLeft
-
-    panningInterval.current = setInterval(
-      _ => {
-        rootNode.current.scrollLeft += Math.min(PANNING_AMOUNT, remainingScroll)
-        setScrollLeft(rootNode.current.scrollLeft)
-      },
-      PANNING_INTERVAL
-    )
+    panningInterval.current = setInterval(_ => scroll(amountPerTick), PANNING_INTERVAL)
   }
+
+  const startPanningLeft = _ => startPanning(-PANNING_AMOUNT)
+  const startPanningRight = _ => startPanning(PANNING_AMOUNT)
 
   const stopPanning = _ => {
     clearInterval(panningInterval.current)
     setPanning(false)
   }
 
+  const onTouchMove = ev => {
+    const { screenX: x } = ev.touches[0]
+
+    if (lastTouch.current) {
+      const delta = lastTouch.current - x
+      scroll(delta)
+    }
+
+    lastTouch.current = x
+  }
+
+  const onTouchEnd = _ => lastTouch.current = undefined
+
   return (
-    <Root className={className}>
+    <Root className={className} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
       {displayArrows && rootNode.current && (
         <>
           <LeftPanControl onMouseEnter={startPanningLeft} onMouseLeave={stopPanning} color={panControlColor} visible={scrollLeft > 0}>

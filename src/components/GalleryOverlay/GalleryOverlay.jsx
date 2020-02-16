@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { createGlobalStyle } from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
@@ -20,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+// z-index is set to be greater than MaterialUI AppBar's
 const Root = styled.div`
   position: fixed;
   top: 0;
@@ -27,7 +29,7 @@ const Root = styled.div`
   width: 100%;
   height: 100%;
   background: black;
-  z-index: 2;
+  z-index: 1101;
   display: flex;
   flex-direction: column;
 `
@@ -49,6 +51,11 @@ const Strip = styled(Panner).attrs({
   padding: ${STRIP_PADDING};
   width: calc(100% - 16px);
   flex-shrink: 0;
+  display: none;
+
+  ${breakpoint('desktop')`
+    display: block;
+  `}
 `
 
 const StripItem = styled.img`
@@ -88,6 +95,7 @@ const NextButtonWrapper = styled(BaseButtonWrapper)`
 const GalleryOverlay = ({ images, currentImage: initialCurrentImage }) => {
   const { hideOverlay } = useContext(Context)
   const [currentImage, setCurrentImage] = useState(initialCurrentImage)
+  const lastTouch = useRef()
 
   const currentImageIndex = images.indexOf(currentImage)
   const prevImage = images[currentImageIndex - 1]
@@ -112,13 +120,39 @@ const GalleryOverlay = ({ images, currentImage: initialCurrentImage }) => {
 
   const CurrentImage = styled.img`
     max-width: 100%;
-    max-height: calc(100vh - ${images.length > 0 ? STRIP_HEIGHT : '0px'} - ${STRIP_PADDING} * 2);
+    max-height: 100%;
+
+    ${breakpoint('desktop')`
+      max-height: calc(100vh - ${images.length > 0 ? STRIP_HEIGHT : '0px'} - ${STRIP_PADDING} * 2);
+    `}
   `
+
+  const onTouchStart = ev => {
+    const { screenX: x, screenY: y } = ev.touches[0]
+    lastTouch.current = { x, y }
+  }
+
+  const onTouchEnd = ev => {
+    const { screenX: x, screenY: y } = ev.changedTouches[0]
+
+    const deltaX = lastTouch.current.x - x
+    const deltaY = lastTouch.current.y - y
+
+    console.log({ deltaX, deltaY })
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      deltaX > 0 ? displayNextImage() : displayPrevImage()
+    } else {
+      hideOverlay()
+    }
+
+    lastTouch.current = undefined
+  }
 
   return (
     <>
       <GlobalStyle />
-      <Root>
+      <Root onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <CurrentImageWrapper>
           {prevImage && (
             <PrevButtonWrapper>
