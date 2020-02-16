@@ -1,7 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
-
-import Typography from '@material-ui/core/Typography'
 
 import Gallery from '../../components/Gallery'
 import P from '../../components/Paragraph'

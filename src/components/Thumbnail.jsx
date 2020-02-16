@@ -11,6 +11,7 @@ const Root = styled.div`
 
 const Img = styled.img`
   width: 500px;
+  max-width: 100%;
   border-radius: 8px;
   margin-bottom: 16px;
   cursor: zoom-in;

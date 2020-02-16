@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 import { Link as RouterLink } from 'react-router-dom'
 import moment from 'moment'
 
@@ -28,11 +29,23 @@ const Link = styled(RouterLink)`
 
 const PostLink = styled.div`
   display: flex;
+  flex-direction: column;
   background-color: whitesmoke;
   padding: 16px;
   border-radius: 8px;
   text-decoration: none;
-  color: black:
+  color: black;
+
+  ${breakpoint('desktop')`
+    flex-direction: row;
+  `}
+`
+
+const PostLinkLeftSide = styled.div`
+  ${breakpoint('mobile', 'tablet')`
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 8px;
+  `}
 `
 
 const PostLinkRightSide = styled.div`
@@ -76,10 +89,10 @@ const PostList = ({ limit, filters: initialFilters }) => {
       {filteredPosts.map((post, slug) =>
         <Link key={slug} to={`/posts/${post.slug}`}>
           <PostLink>
-            <div>
+            <PostLinkLeftSide>
               <Typography variant='h4'>{post.title}</Typography>
               <Typography variant='subtitle1'>{post.description}</Typography>
-            </div>
+            </PostLinkLeftSide>
 
             <FlexSpacer />
 

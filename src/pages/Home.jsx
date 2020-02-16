@@ -1,12 +1,11 @@
 import React from 'react'
 
-import MaterialUIButton from '@material-ui/core/Button'
 import P from '../components/Paragraph'
 import A from '../components/InlineHyperLink'
 import PostList from '../components/PostList'
 
 const Home = _props => (
-  <div>
+  <>
     <P>
       Hello there!
       <br />
@@ -32,7 +31,7 @@ const Home = _props => (
     </P>
 
     <PostList limit={5} />
-  </div>
+  </>
 )
 
 export default Home

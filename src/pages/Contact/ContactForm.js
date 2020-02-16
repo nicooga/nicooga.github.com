@@ -1,5 +1,7 @@
+/* global emailjs */
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 import { useForm, useField } from 'react-final-form-hooks'
 
 import MuiTextField from '@material-ui/core/TextField'
@@ -9,9 +11,17 @@ import Typography from '@material-ui/core/Typography'
 
 const Root = styled.form`
   position: relative;
+  box-sizing: border-box;
   background-color: whitesmoke;
   padding: 16px;
   border-radius: 8px;
+  width: 100%;
+  margin: 0;
+
+
+  ${breakpoint('desktop')`
+    width: 600px;
+  `}
 `
 
 const BlurWrapper = styled.div`
@@ -22,19 +32,15 @@ const BlurWrapper = styled.div`
   flex-direction: column;
 `
 
-const CenteredContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`
-
 const Field = styled.div`
+  width: 100%;
   &:not(:last-child) {
     margin-bottom: 16px;
   }
 `
 
 const TextField = styled(MuiTextField)`
-  width: 600px;
+  width: 100%;
   max-width: 100%;
 `
 
@@ -50,20 +56,20 @@ const Overlay = styled.div`
   opacity: 0.9;
   z-index: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction:  column;
 `
 
 const ContactForm = _props => {
   const [currentPhase, setCurrentPhase] = useState('formFilling')
 
   const { form, handleSubmit } = useForm({
-    async onSubmit(values) {
+    async onSubmit (values) {
       setCurrentPhase('submitting')
 
       try {
         await emailjs.send('gmail', 'personal_site_contact', values)
         setCurrentPhase('success')
-      } catch(error) {
+      } catch (error) {
         setCurrentPhase('error')
       }
     }
@@ -72,10 +78,6 @@ const ContactForm = _props => {
   const email = useField('email', form)
   const name = useField('name', form)
   const body = useField('body', form)
-
-  const CurrentOverlay = _ => {
-
-  }
 
   return (
     <Root onSubmit={handleSubmit}>

@@ -5,6 +5,7 @@ import 'typeface-roboto'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 import {
   BrowserRouter as Router,
   Switch,
@@ -27,20 +28,35 @@ import { GalleryOverlayProvider } from './components/GalleryOverlay'
 
 const Root = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+
+  ${breakpoint('desktop')`
+    justify-content: center;
+    flex-direction: row;
+  `}
 `
 
 const MainContainer = styled.div`
-  width: 1000px;
+  width: 100%;
   max-width: 100%;
-  margin-top: 70px;
+
+  ${breakpoint('desktop')`
+    width: 1000px;
+    margin-top: 70px;
+  `}
 `
 
-// 361px here is a migic number which sums all the vertical space taken by navigation, footer and the margin of other elements.
+// 361px here is a magic number which sums all the vertical space taken by navigation, footer and the margin of other elements.
 // No one likes magic numbers, but in this case is not a big deal.
 const Body = styled.div`
-  padding: 40px 0 0 8px;
-  min-height: calc(100vh - 291px);
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 8px;
+
+  ${breakpoint('desktop')`
+    padding: 40px 0 0 8px;
+    min-height: calc(100vh - 291px);
+  `}
 `
 
 const App = _props => (

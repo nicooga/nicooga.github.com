@@ -8,12 +8,6 @@ import Thumbnail from '../../components/Thumbnail'
 
 import oldBlog from './old-blog.png'
 
-const Img = styled.img`
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 16px;
-`
-
 const A = styled(InlineHyperLink).attrs({ external: true })``
 
 const Post = _props => (
@@ -65,7 +59,7 @@ const Post = _props => (
     <P>
       When I built my first blog, I wanted to promote myself as a developer.
       That is still my primary motivation or excuse today.
-      Nowadays I feel like I have more to offer than back then, but never actually sat down and invested time into making a "good" blog.
+      Nowadays I feel like I have more to offer than back then, but never actually sat down and invested time into making a &quote;good&quote; blog.
       Not having a stablished platform for blogging kept me from posting anything useful on the web for a long time.
       This blog is supposed to change that.
     </P>

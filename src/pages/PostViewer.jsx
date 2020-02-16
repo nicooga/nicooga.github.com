@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 import moment from 'moment'
 import Typography from '@material-ui/core/Typography'
 
@@ -10,9 +11,14 @@ const DATE_FORMAT = 'MMMM Do YYYY'
 
 const Header = styled.div`
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   border-bottom: 1px solid lightgrey;
   margin-bottom: 24px;
+
+  ${breakpoint('desktop')`
+    flex-direction: row;
+    align-items: flex-end;
+  `}
 `
 
 const HeaderRightSide = styled.div`
@@ -26,8 +32,6 @@ const Heading = styled(Typography).attrs({ variant: 'h4', component: 'h1' })``
 const FlexSpacer = styled.div`
   flex-grow: 1;
 `
-
-const P = styled(Typography).attrs({ variant: 'body1', paragraph: true })``
 
 const PostViewer = ({ match }) => {
   const post = posts.find(p => p.slug === match.params.slug)
