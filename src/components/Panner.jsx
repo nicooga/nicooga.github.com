@@ -127,7 +127,7 @@ const Panner = ({ children, className, panControlColor, center }) => {
     lastTouch.current = x
   }
 
-  const onTouchEnd = _ => lastTouch.current = undefined
+  const onTouchEnd = _ => { lastTouch.current = undefined }
 
   return (
     <Root className={className} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>

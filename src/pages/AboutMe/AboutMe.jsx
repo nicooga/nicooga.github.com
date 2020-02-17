@@ -100,7 +100,7 @@ const AboutMe = _props => (
 
     <P>
       High school was not a memorable part of my life. To start with, I went to a private school where I suffered some bullying, especially during the first years.
-      Reasons? I was a little too introverted and some kids there thought they were superior to me. I didn&apos;Mt like futbol a lot and played it worse.
+      Reasons? I was a little too introverted and some kids there thought they were superior to me. I didn&apos;t like futbol a lot and played it worse.
       Also, I have big ears which won me the &quot;Dumbo&quot; and &quot;Topo Gigio&quot; nicknames.
     </P>
 
@@ -119,8 +119,8 @@ const AboutMe = _props => (
 
     <P>
       I was basically not allowed to have any close contact with &quot;mundane&quot; people (that&apos;s how they call people that are not JWs). Most of my childhood I spent going from school to home.
-      Each week I&apos;Md regularly spent some hours in weekly JW meetings, and studying the Bible as preparation for them. We had meetings at the weekends and we would also go preaching.
-      I was forced to spend around 8 weekly hours in these activities. For some time I thought this was normal, but that wouldn&apos;Mt last forever.
+      Each week I&apos;d regularly spent some hours in weekly JW meetings, and studying the Bible as preparation for them. We had meetings at the weekends and we would also go preaching.
+      I was forced to spend around 8 weekly hours in these activities. For some time I thought this was normal, but that wouldn&apos;t last forever.
     </P>
 
     <P>
@@ -157,14 +157,14 @@ const AboutMe = _props => (
       Then I took the bad decision to accept cigarettes from a friend at a party. I would smoke a whole pack a day for the following 2 years.
       I was not in good shape. My sleeping schedule was all over the place and I lost a lot of weight.
       That also got me expelled from JWs, because you are not allowed to use substances like tobacco or cannabis.
-      Don&apos;Mt worry, I regained all that weight and a little more, just to be on the safe side :D.
+      Don&apos;t worry, I regained all that weight and a little more, just to be on the safe side :D.
     </P>
 
     <P>
       It was not like I cared to be part of that organization anymore, but JWs are taught no to have contact with expelled or &quot;ex&quot; JWs.
-      Most of them don&apos;Mt greet you anymore, even if they are in your house or see you in the street.
+      Most of them don&apos;t greet you anymore, even if they are in your house or see you in the street.
       They fear you, like you where some kind of dark influence that could bring disgrace to their lives.
-      And they see you as a failure, a lost sheep. They can&apos;Mt understand that you can not believe the same as them, and that&apos;s fine.
+      And they see you as a failure, a lost sheep. They can&apos;t understand that you can not believe the same as them, and that&apos;s fine.
       I lost close contact with all my JWs friends and family, except for my brother who walked a similar path.
     </P>
 
@@ -194,7 +194,7 @@ const AboutMe = _props => (
     <Gallery images={[fotosLuz, lagoGutierrez, luzCerroTronador, BiancaYPeluso]} />
 
     <P>
-      Work didn&apos;Mt leave me a lot of free time, but over the years I gained a few hobbies.
+      Work didn&apos;t leave me a lot of free time, but over the years I gained a few hobbies.
       You may think that I am a &quot;down to earth&quot; kind of guy. You may be right.
       With time I begin to enjoy more and more things that are closer to natural, simple life than the modern life we live in the city.
       I also enjoy cyclotouring, trekking, and recently got into fishing.

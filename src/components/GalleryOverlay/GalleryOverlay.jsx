@@ -138,8 +138,6 @@ const GalleryOverlay = ({ images, currentImage: initialCurrentImage }) => {
     const deltaX = lastTouch.current.x - x
     const deltaY = lastTouch.current.y - y
 
-    console.log({ deltaX, deltaY })
-
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
       deltaX > 0 ? displayNextImage() : displayPrevImage()
     } else {

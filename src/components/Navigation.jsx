@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link as RouterLink, matchPath, withRouter } from 'react-router-dom'
 
@@ -48,6 +49,10 @@ const HideOnScroll = ({ children }) => {
       {children}
     </Slide>
   )
+}
+
+HideOnScroll.propTypes = {
+  children: PropTypes.element.isRequired
 }
 
 // I want my link to react to route changes to re-calculate "isActive" value.
