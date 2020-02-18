@@ -17,7 +17,10 @@ const InlineHyperLink = styled(Button).attrs(props => ({
   font-family: inherit !important;
   line-height: inherit !important;
   padding: 0 3px !important;
-  margin: 0 -3px !important;
+  margin-left: -3px !important;
+  margin-right: -3px !important;
+  margin-top: -1px !important;
+  letter-spacing: inherit !important;
 `
 
 InlineHyperLink.propTypes = {

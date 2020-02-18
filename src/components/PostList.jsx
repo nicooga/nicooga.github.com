@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
 import { Link as RouterLink } from 'react-router-dom'
 import moment from 'moment'
+import sortBy from 'lodash.sortby'
 
 import Typography from '@material-ui/core/Typography'
 import Chip from '@material-ui/core/Chip'
@@ -17,6 +18,10 @@ const DATE_FORMAT = 'MMMM Do YYYY'
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+
+  > :not(:last-child) {
+    margin-bottom: 16px;
+  }
 `
 
 const FlexSpacer = styled.span`
@@ -50,7 +55,10 @@ const PostLinkLeftSide = styled.div`
 
 const PostLinkRightSide = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
+  ${breakpoint('desktop')`
+    flex-direction: column;
+  `}
 `
 
 const PostLinkTags = styled.div`
@@ -71,7 +79,8 @@ const PostList = ({ limit, filters: initialFilters }) => {
   const [filters, setFilters] = useState(initialFilters)
   const { tagsInclude: includedTags, tagsExclude: excludedTags } = filters
 
-  const filteredPosts = posts.slice(0, limit).filter(p =>
+  const sortedPosts = sortBy(posts, p => -p.date.getTime())
+  const filteredPosts = sortedPosts.slice(0, limit).filter(p =>
     (includedTags ? includedTags.find(t => p.tags && p.tags.include(t)) : true) &&
     (excludedTags ? !excludedTags.find(t => p.tags && p.tags.include(t)) : true)
   )
@@ -90,7 +99,7 @@ const PostList = ({ limit, filters: initialFilters }) => {
         <Link key={slug} to={`/posts/${post.slug}`}>
           <PostLink>
             <PostLinkLeftSide>
-              <Typography variant='h4'>{post.title}</Typography>
+              <Typography variant='h6'>{post.title}</Typography>
               <Typography variant='subtitle1'>{post.description}</Typography>
             </PostLinkLeftSide>
 

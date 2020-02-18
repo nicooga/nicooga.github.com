@@ -1,6 +1,12 @@
 import post1 from './2020_02_10_hello_world'
+import post2 from './2020_02_16_creating_a_gallery_component_in_react'
 
 const REQUIRED_PROPERTIES = ['title', 'slug', 'date', 'component', 'description']
+
+const posts = [
+  post1,
+  post2
+]
 
 // Yeah, I know, this is horrible.
 // A better solution would be using TS and implemeting a Post interface to ensure no important properties are missing.
@@ -12,11 +18,11 @@ const validate = post => {
       throw `Missing post property "${prop}"` // eslint-disable no-throw-literal
     }
   })
-}
 
-const posts = [
-  post1
-]
+  if (posts.filter(p => p.slug === post.slug).length > 1) {
+    throw 'Duplicated slug ' + post.slug // eslint-disable no-throw-literal
+  }
+}
 
 posts.forEach(validate)
 

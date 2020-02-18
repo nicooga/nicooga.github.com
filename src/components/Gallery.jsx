@@ -16,7 +16,7 @@ const Item = styled.img`
     margin-right: 8px;
   }
 
-  cursor: zoom-in;
+  cursor: pointer;
 `
 
 const CustomPanner = styled(Panner)`

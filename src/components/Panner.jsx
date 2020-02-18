@@ -33,7 +33,6 @@ const PanControl = styled.span`
   height: 100%;
   display: flex;
   align-items: center;
-  cursor: wait;
   z-index: 1;
   opacity: ${props => props.visible ? 1 : 0};
   transition: opacity 400ms;
