@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
 import IconButton from '@material-ui/core/IconButton'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
@@ -8,7 +7,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
 
 import useDragScroll from './useDragScroll'
 import useHoverScroll from './useHoverScroll'
-import useSwipeScroll from "./useSwipeScroll"
+import useSwipeScroll from './useSwipeScroll'
 import { Root, FilmStrip, LeftPanControl, RightPanControl } from './styledComponents'
 
 const Panner = ({ children, className, panControlColor, center }) => {

@@ -25,6 +25,7 @@ const HeaderRightSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  flex-shrink: 0;
 `
 
 const Heading = styled(Typography).attrs({ variant: 'h4', component: 'h1' })``

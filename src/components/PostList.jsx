@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography'
 import Chip from '@material-ui/core/Chip'
 
 import A from '../components/InlineHyperLink'
-
 import posts from '../posts'
 
 const DATE_FORMAT = 'MMMM Do YYYY'
@@ -81,8 +80,8 @@ const PostList = ({ limit, filters: initialFilters }) => {
 
   const sortedPosts = sortBy(posts, p => -p.date.getTime())
   const filteredPosts = sortedPosts.slice(0, limit).filter(p =>
-    (includedTags ? includedTags.find(t => p.tags && p.tags.include(t)) : true) &&
-    (excludedTags ? !excludedTags.find(t => p.tags && p.tags.include(t)) : true)
+    (includedTags && p.tags ? includedTags.find(t => p.tags.includes(t)) : true) &&
+    (excludedTags && p.tags ? !excludedTags.find(t => p.tags.includes(t)) : true)
   )
 
   return (
