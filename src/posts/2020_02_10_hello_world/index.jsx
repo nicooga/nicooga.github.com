@@ -59,7 +59,7 @@ const Post = _props => (
     <P>
       When I built my first blog, I wanted to promote myself as a developer.
       That is still my primary motivation or excuse today.
-      Nowadays I feel like I have more to offer than back then, but never actually sat down and invested time into making a &quote;good&quote; blog.
+      Nowadays I feel like I have more to offer than back then, but never actually sat down and invested time into making a &quot;good&quot; blog.
       Not having a stablished platform for blogging kept me from posting anything useful on the web for a long time.
       This blog is supposed to change that.
     </P>
