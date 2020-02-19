@@ -83,7 +83,6 @@ const App = _props => (
 
             <Footer />
           </MainContainer>
-
         </Root>
       </Router>
     </GalleryOverlayProvider>

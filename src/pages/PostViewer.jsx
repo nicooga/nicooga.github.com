@@ -5,6 +5,7 @@ import breakpoint from 'styled-components-breakpoint'
 import moment from 'moment'
 import Typography from '@material-ui/core/Typography'
 
+import setDocumentTitle from '../setDocumentTitle'
 import posts from '../posts'
 
 const DATE_FORMAT = 'MMMM Do YYYY'
@@ -37,6 +38,9 @@ const FlexSpacer = styled.div`
 const PostViewer = ({ match }) => {
   const post = posts.find(p => p.slug === match.params.slug)
   const Component = post.component
+
+  setDocumentTitle({ subtitle: post.plainTextTitle || post.title })
+
   return <div>
     <Header>
       <Heading>{post.title}</Heading>

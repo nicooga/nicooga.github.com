@@ -349,6 +349,7 @@ const post = {
   // Here "1" stands for February. Initially I put "2", but I was seeing March when displaying the date.
   // Took me some time to understand what was happening. This is why I love-hate JS.
   date: new Date(2020, 1, 16),
+  plainTextTitle: 'Creating a gallery component with react and styled-components',
   title: <>Creating a gallery component with react and <nobr>styled-components</nobr></>,
   description: 'Step by step guide',
   component: Post,

@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography'
 import MuiButton from '@material-ui/core/Button'
 import EmailIcon from '@material-ui/icons/Email'
 
+import setDocumentTitle from '../../setDocumentTitle'
+
 import ContactForm from './ContactForm'
 
 import GitHubIcon from '../../assets/github-logo.svg'
@@ -136,6 +138,8 @@ const ContactLinks = _props => {
 }
 
 const Contact = _props => {
+  setDocumentTitle({ subtitle: 'Contact' })
+
   return (
     <Root>
       <LeftColumn>
