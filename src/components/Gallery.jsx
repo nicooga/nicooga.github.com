@@ -6,19 +6,6 @@ import breakpoint from 'styled-components-breakpoint'
 import Panner from './Panner'
 import { useGalleryOverlay } from './GalleryOverlay'
 
-const Item = styled.img`
-  display: block;
-  border-radius: 10px;
-  object-fit: cover;
-  height: 100%;
-
-  &:not(:last-child) {
-    margin-right: 8px;
-  }
-
-  cursor: pointer;
-`
-
 const CustomPanner = styled(Panner)`
   margin: 16px 0;
   padding: 8px;
@@ -32,6 +19,19 @@ const CustomPanner = styled(Panner)`
   ${breakpoint('desktop')`
     height: 200px;
   `}
+`
+
+const Item = styled.img.attrs({ onDragStart: ev => ev.preventDefault() })`
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+  height: 100%;
+
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  cursor: pointer;
 `
 
 const Gallery = ({ images }) => {

@@ -63,7 +63,7 @@ const StripItem = styled.img`
   border: 1px solid ${props => props.current ? 'white' : 'transparent'};
   cursor: pointer;
   &:not(:last-child) {
-    margin-right: 8px;j
+    margin-right: 8px;
   }
 `
 

@@ -62,6 +62,7 @@ const Iframe = styled.iframe`
 
 const Placeholder = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -73,6 +74,11 @@ const LoadingPlaceholder = styled(Placeholder)`
   top: 0;
   left: 0;
   background-color: lightgrey;
+  display: flex;
+
+  > :first-child {
+    margin-bottom: 16px;
+  }
 `
 
 const CodeSandboxIframe = ({ slug, caption, view, height, module }) => {
@@ -106,6 +112,7 @@ const CodeSandboxIframe = ({ slug, caption, view, height, module }) => {
       {loading && (
         <LoadingPlaceholder>
           <CircularProgress />
+          Loading CodeSandbox ...
         </LoadingPlaceholder>
       )}
     </>

@@ -75,7 +75,7 @@ const Post = _props => {
       <li>When you click on an image, a fullscreen overlay is shown</li>
     </ul>
 
-    <Figure src={mockup1} caption='The fullscreen overlay' />
+    <Figure src={mockup1} caption='The panner' />
 
     <P>
       Features of the fullscreen overlay:
@@ -96,7 +96,7 @@ const Post = _props => {
       <li>Can be closed using a little "X" on the corner or by hitting the Escape key</li>
     </ul>
 
-    <Figure src={mockup2} caption='The panner' />
+    <Figure src={mockup2} caption='The fullscreen overlay' />
 
     <P>
       It is worth mentioning that you can have multiple galleries on the same page and they should work correctly.
@@ -135,7 +135,7 @@ const Post = _props => {
     </P>
 
     <P>
-      I specified <code>object-fit: contain;</code> for the images to disable the default drag-and-drop behavior.
+      I specified <code>{'onDragStart={ev => ev.preventDefault()}'}</code> for the images to disable the default drag-and-drop behavior.
     </P>
 
     <P>
@@ -237,9 +237,11 @@ const Post = _props => {
     <P>
       Not much to comment, it works!
       Let's make this thing look pretty by using some icons and hiding the hoverable divs when not needed.
+      Also, let's make a proper Gallery component that builds on top of the Panner.
+      It will accept the whole array of image sources and iterate over them so we don't have to.
     </P>
 
-    <CodeSandboxIframe slug='pretty-panner-mhmyi' caption="Pretty Panner" module='/Panner/index.jsx' view='preview' height='400px' />
+    <CodeSandboxIframe slug='pretty-panner-mhmyi' caption="Pretty Panner" module='/Gallery.jsx' view='preview' height='400px' />
 
     <P>
       Perfecto! In my humble opinion, this component already looks and feels amazing.
@@ -257,11 +259,89 @@ const Post = _props => {
       Keep it up, we are on the right track!
     </P>
 
-    <PostSectionTitle>The fullscreen overlay</PostSectionTitle>
+    <PostSectionTitle>The fullscreen gallery</PostSectionTitle>
 
     <P>
       The whole purpose of this component was to have a zoomed-in view of our images.
-      Here comes into play the fullscreen overlay, or the fullscreen gallery.
+      Here comes into play the fullscreen gallery.
+    </P>
+
+    <P>
+      First things first, we'll need a platform to display our fullscreen gallery at.
+      This would be a simple fixed div that shows on top of the entire page.
+    </P>
+
+    <P>
+      Remember I said we could have multiple galleries on the page and they should work correctly?
+      For this we'll need them to share usage of the same fullscreen gallery.
+      Inline gallery components across the page should all be able to trigger the full screen gallery to display, passing the image list and current selected image.
+      This can be tricky though, as React is very protective of component's state.
+      We'll get to the chosen solution soon enough. Spoiler alert: it involves usage of React contenxts.
+    </P>
+
+    <P>
+      So let's start by creating the component that will represent the full screen gallery.
+    </P>
+
+    <CodeSandboxIframe slug='useless-full-screen-overlay-390yf' caption="Useless Full Screen Gallery" module='/FullScreenGallery.jsx' view='preview' />
+
+    <P>
+      Here it is. A big dumb fullscreen gallery component.
+      I borrowed icons from MaterialUI again and sprinkled some markup to make it work.
+      The <code>Panner</code> component we built before became useful again as a means to display the list of images.
+    </P>
+
+    <P>
+      The rest of the page didn't go away, I just rendered the fullscreen gallery on top of it.
+      It does not have any kind of dynamic behavior. It's open by default, can't be closed, and the images are hardcoded.
+      We need it to open when an image on a gallery is clicked, passing the clicked image as <code>currentImage</code> and all the images in the clicked gallery as <code>images</code>.
+    </P>
+
+    <P>
+      Let's get into that global state management.
+    </P>
+
+    <PostSectionTitle>Making the FullScreenGallery available to all the Gallery components in the page</PostSectionTitle>
+
+    <P>
+      We'll make usage of a common pattern among libraries in React: the context provider.
+      This component will provide access to functions that control the FullScreenGallery state to any component in it's descendance.
+    </P>
+
+    <P>
+      The provider will take your whole application as a children and render it inside a regular <code>Context.Provider</code>, created with <code>React.createContextProvider</code>.
+      We will also render the <code>FullScreenGallery</code> itself. For shortness, I'll call it <code>GalleryProvider</code>.
+    </P>
+
+    <CodeSandboxIframe slug='introducing-the-galleryprovider-zs0i1' caption="The GalleryProvider" module='/GalleryProvider.jsx' view='editor' />
+
+    <P>
+      Here is our provider.
+      Note that this component is stateful and we are passing the <code>active</code> prop to the <code>FullScreenGallery</code> component.
+      We could also just write something like <code>{'{active && \<FullScreenGallery ... /\>}'}</code>, but this way the <code>FullScreenGallery</code> will know about being active or not, and will be able to implement any kind of in/out animation.
+      Let's wrap our component tree with this provider and wire the <code>Gallery</code> component to have access to it's goodies via the <code>useFullScreenGallery</code> hook.
+    </P>
+
+    <CodeSandboxIframe slug='introducing-the-galleryprovider-crlud' caption="Wiring the Gallery component" module='/Gallery.jsx' />
+
+    <P>
+      Starting to look functional already. When you click on an image on the gallery, it triggers the <code>FullScreenGallery</code> to show.
+      For demonstrational purposes, I've added a second gallery to show how they share the usage of the fullscrren gallery.
+      We are missing some behavior yet, because the <code>FullScreenGallery</code> can't be closed, and we can't navigate through the images on it.
+      Let's wire the close button, the prev/next buttons and the <code>>onClick</code> handler for the images on the strip.
+    </P>
+
+    <CodeSandboxIframe slug='wiring-the-fullscreengallery-controls-boq0r' caption="Wiring the FullScreenGallery controls" module='/FullScreenGallery/index.jsx' />
+
+    <P>
+      That's it. We are finished. My version of full screen gallery also has keyboard and swipe support, but this post got really long already.
+      In any case, you can implement those on your own following following the same pattern for organizing behavior we used for the Panner.
+      There's also still good oportunity for refactor and better code organization here, buy I think we did a pretty good job so far.
+    </P>
+
+    <P>
+      I hope you found this little big tutorial helpful or even enlightening.
+      If you have any constructive input, comments or suggestions, I would love to hear about them. Use the comments section beneath!
     </P>
   </Typography>
 }
