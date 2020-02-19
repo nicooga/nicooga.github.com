@@ -99,7 +99,7 @@ const Post = _props => {
 
     <P>
       It is worth mentioning that you can have multiple galleries on the same page and they should work correctly.
-      There&as going to be a single overlay component, shared by all gallery instances.
+      There&apos;s going to be a single overlay component, shared by all gallery instances.
     </P>
 
     <PostSectionTitle>The panner</PostSectionTitle>
@@ -110,7 +110,7 @@ const Post = _props => {
     </P>
 
     <P>
-      A poor man&as version of this component would be a simple, scrollable div with a set height.
+      A poor man&apos;s version of this component would be a simple, scrollable div with a set height.
     </P>
 
     <CodeSandboxIframe slug='styled-components-d942z' caption="Poor Man's Panner" />
@@ -122,7 +122,7 @@ const Post = _props => {
 
     <P>
       This is somewhat usable, but it looks awful. We need to ditch that scrollbar and begin over-engineering to make it look nice.
-      We&all start by making it pan using mouse drag.
+      We&apos;ll start by making it pan using mouse drag.
     </P>
 
     <CodeSandboxIframe slug='poor-mans-panner-5guoq' caption='Draggable Panner' />
@@ -130,7 +130,7 @@ const Post = _props => {
     <P>
       Nice, that looks a lot better already. We used a combination of mouse events to control the scrolling. <code>onMouseDown</code>, <code>onMouseUp</code> and <code>onMouseLeave</code> tells us whether the user is current dragging on the container.
       Comparing the &quot;x&quot; coordinate of the <code>onMouseMove</code> event against the last known &quot;x&quot; position gives us the number of pixels that the user moved the mouse on the last &quot;tick&quot; of this event.
-      We can sum this amount to the element&as <code>scrollLeft</code> property to achieve the scrolling effect we want.
+      We can sum this amount to the element&apos;s <code>scrollLeft</code> property to achieve the scrolling effect we want.
     </P>
 
     <P>
@@ -140,25 +140,25 @@ const Post = _props => {
     <P>
       Also note the usage of <code>useRef</code> hook. We could get away with using regular variables because our component is not going to re-render.
       But as soon as we introduce changes that cause a re-render, we are bound to run into problems, as local variables are going to be reset.
-      By using a ref, we make sure we don&at lose our state.
+      By using a ref, we make sure we don&apos;t lose our state.
     </P>
 
     <P>
-      So that&as it for dragging. We are still missing hover and swipe.
+      So that&apos;s it for dragging. We are still missing hover and swipe.
       Keep in mind that our component is soon going to begin bloating because of three different behaviours being present.
-      We&all need to deal with that bloat later.
+      We&apos;ll need to deal with that bloat later.
     </P>
 
     <PostSectionTitle>Adding scroll by hover</PostSectionTitle>
 
     <P>
-      We&all add two little divs on the sides with arrow icons, that will begin scrolling the container into the appropriate direction when hovered.
-      I&all call these &quot;pan controls&quot;.
+      We&apos;ll add two little divs on the sides with arrow icons, that will begin scrolling the container into the appropriate direction when hovered.
+      I&apos;ll call these &quot;pan controls&quot;.
     </P>
 
     <P>
-      We&all use absolute positioning to display the pan controls on top of the images.
-      There&as an unexpected behaviour with absolute positioning that we&all need to deal with.
+      We&apos;ll use absolute positioning to display the pan controls on top of the images.
+      There&apos;s an unexpected behaviour with absolute positioning that we&apos;ll need to deal with.
       See how the pan controls are scrolled alongside the images on this failed example.
       I made the pan controls pop-up using an ugly background colour:
     </P>
@@ -167,36 +167,36 @@ const Post = _props => {
 
     <P>
       We need our pan controls to not be children of a scrollable div.
-      To fix this, we&all need to render the scrollable content inside another wrapper element,
+      To fix this, we&apos;ll need to render the scrollable content inside another wrapper element,
       while the pan controls remain to be children of the root element.
     </P>
 
     <CodeSandboxIframe slug='fixed-hoverable-panner-n61p1' caption='Fixed Hoverable Panner' />
 
     <P>
-      Fixed. Now let&as add the hover behaviour.
-      We&all use <code>onMouseEnter</code> and <code>onMouseLeave</code> to start and stop the scrolling in the given direction.
+      Fixed. Now let&apos;s add the hover behaviour.
+      We&apos;ll use <code>onMouseEnter</code> and <code>onMouseLeave</code> to start and stop the scrolling in the given direction.
     </P>
 
     <CodeSandboxIframe slug='hoverable-panner-bh628' caption='Actually Hoverable Panner' />
 
     <P>
-      Good job, we already have scroll on hover. We&all take care of making these pan controls look nice later.
+      Good job, we already have scroll on hover. We&apos;ll take care of making these pan controls look nice later.
       But right now we have more pushing problems. The component is already bloated.
-      We&all try to separate concerns and better encapsulate the code that enables each behaviour.
+      We&apos;ll try to separate concerns and better encapsulate the code that enables each behaviour.
     </P>
 
     <PostSectionTitle>Separating concerns</PostSectionTitle>
 
     <P>
-      To continue with the trend, we&all create a custom hook for each of our behaviours.
-      Let&as call them <code>useDragScroll</code> and <code>useHoverScroll</code>.
+      To continue with the trend, we&apos;ll create a custom hook for each of our behaviours.
+      Let&apos;s call them <code>useDragScroll</code> and <code>useHoverScroll</code>.
     </P>
 
     <P>
       Creating custom hooks is more straightforward than you might think.
       The thing I love about react and the direction they took in the last years, is that everything boils down to using the language features.
-      Hooks are just functions. Let&as get to it.
+      Hooks are just functions. Let&apos;s get to it.
     </P>
 
     <CodeSandboxIframe slug='refactored-hoverable-panner-0djk3' caption='Refactored Draggable Hoverable Panner' module='/Panner/index.jsx' />
@@ -204,13 +204,13 @@ const Post = _props => {
     <P>
       Ah, so much better. What a fantastic change it can be to move stuff under the carpet.
       But seriously, now that each behaviour is separated into a different file, we can easily test them in isolation.
-      That&as the spirit of good unit testing.
-      Also -although here we won&at need it- isolation means that we can re-use these hooks wherever it makes sense.
+      That&apos;s the spirit of good unit testing.
+      Also -although here we won&apos;t need it- isolation means that we can re-use these hooks wherever it makes sense.
     </P>
 
     <P>
       If you are familiar with enhancer functions or higher-order components, this is not much different.
-      Instead of receiving stuff via props, we can simply use the language&as elemental features and ditch the &quot;prop passing dance&quot;.
+      Instead of receiving stuff via props, we can simply use the language&apos;s elemental features and ditch the &quot;prop passing dance&quot;.
       I will probably talk about this typical dance on another post.
     </P>
 
@@ -221,31 +221,31 @@ const Post = _props => {
     </P>
 
     <P>
-      We are almost there. Now that we established a pattern to add more behaviour to our component without cluttering it, let&as keep moving.
+      We are almost there. Now that we established a pattern to add more behaviour to our component without cluttering it, let&apos;s keep moving.
     </P>
 
     <PostSectionTitle>Adding swipe scroll behavior</PostSectionTitle>
 
     <P>
-      Very similarly to how we solved drag, we are going to compare the &quot;x&quot; coordinate of <code>onTouchMove</code> events and add the delta to the film strip&as <code>scrollLeft</code> property.
-      Once again, let&as create a custom hook called <code>useSwipeScroll</code> to encapsulate the needed code.
+      Very similarly to how we solved drag, we are going to compare the &quot;x&quot; coordinate of <code>onTouchMove</code> events and add the delta to the film strip&apos;s <code>scrollLeft</code> property.
+      Once again, let&apos;s create a custom hook called <code>useSwipeScroll</code> to encapsulate the needed code.
     </P>
 
     <CodeSandboxIframe slug='swipeable-hoverable-draggable-panner-xrlkm' caption='Swipeable Draggable Hoverable Panner' module='/Panner/index.jsx' />
 
     <P>
       Not much to comment, it works!
-      Let&as make this thing look pretty by using some icons and hiding the hoverable divs when not needed.
-      Also, let&as make a proper Gallery component that builds on top of the Panner.
-      It will accept the whole array of image sources and iterate over them, so we don&at have to.
+      Let&apos;s make this thing look pretty by using some icons and hiding the hoverable divs when not needed.
+      Also, let&apos;s make a proper Gallery component that builds on top of the Panner.
+      It will accept the whole array of image sources and iterate over them, so we don&apos;t have to.
     </P>
 
     <CodeSandboxIframe slug='pretty-panner-mhmyi' caption='Pretty Panner' module='/Gallery.jsx' view='preview' height='400px' />
 
     <P>
       Perfecto! In my humble opinion, this component already looks and feels fantastic.
-      I&ave borrowed icons from Material-UI, then hid the pan controls when not needed by setting its opacity to zero.
-      Also, I&ave specified some cursors for the final touch.
+      I&apos;ve borrowed icons from Material-UI, then hid the pan controls when not needed by setting its opacity to zero.
+      Also, I&apos;ve specified some cursors for the final touch.
     </P>
 
     <P>
@@ -254,7 +254,7 @@ const Post = _props => {
 
     <P>
       Congratulations.
-      That was a lot of work, but we now have an excellent <code>Panner</code> component, and it will be double useful later, you&all see.
+      That was a lot of work, but we now have an excellent <code>Panner</code> component, and it will be double useful later, you&apos;ll see.
       Keep it up, we are on the right track!
     </P>
 
@@ -266,20 +266,20 @@ const Post = _props => {
     </P>
 
     <P>
-      First things first, we&all need a platform to display our fullscreen gallery at.
+      First things first, we&apos;ll need a platform to display our fullscreen gallery at.
       This would be a simple fixed div that shows on top of the entire page.
     </P>
 
     <P>
       Remember I said we could have multiple galleries on the page and they should work correctly?
-      For this, we&all need them to share usage of the same fullscreen gallery.
+      For this, we&apos;ll need them to share usage of the same fullscreen gallery.
       Inline gallery components across the page should all be able to trigger the full-screen gallery to display, passing the image list and currently selected image.
-      This can be tricky, though, as React is very protective of component&as state.
-      We&all get to the chosen solution soon enough. Spoiler alert: it involves the usage of React contexts.
+      This can be tricky, though, as React is very protective of component&apos;s state.
+      We&apos;ll get to the chosen solution soon enough. Spoiler alert: it involves the usage of React contexts.
     </P>
 
     <P>
-      So let&as start by creating the component that will represent the full-screen gallery.
+      So let&apos;s start by creating the component that will represent the full-screen gallery.
     </P>
 
     <CodeSandboxIframe slug='useless-full-screen-overlay-390yf' caption='Useless Full Screen Gallery' module='/F>ullScreenGallery.jsx' view='preview' />
@@ -291,25 +291,25 @@ const Post = _props => {
     </P>
 
     <P>
-      The rest of the page didn&at go away, I just rendered the fullscreen gallery on top of it.
-      It does not have any kind of dynamic behaviour. It&as open by default, can&at be closed, and the images are hardcoded.
+      The rest of the page didn&apos;t go away, I just rendered the fullscreen gallery on top of it.
+      It does not have any kind of dynamic behaviour. It&apos;s open by default, can&apos;t be closed, and the images are hardcoded.
       We need it to open when an image on a gallery is clicked, passing the clicked image as <code>currentImage</code> and all the images in the clicked gallery as <code>images</code>.
     </P>
 
     <P>
-      Let&as get into that global state management.
+      Let&apos;s get into that global state management.
     </P>
 
     <PostSectionTitle>Making the FullScreenGallery available to all the Gallery components in the page</PostSectionTitle>
 
     <P>
-      We&all make usage of a typical pattern among libraries in React: the context provider.
+      We&apos;ll make usage of a typical pattern among libraries in React: the context provider.
       This component will provide access to functions that control the FullScreenGallery state to any component in its descendants.
     </P>
 
     <P>
       The provider will take your whole application as a children and render it inside a regular <code>Context.Provider</code>, created with <code>React.createContextProvider</code>.
-      We will also render the <code>FullScreenGallery</code> itself. For shortness, I&all call it <code>GalleryProvider</code>.
+      We will also render the <code>FullScreenGallery</code> itself. For shortness, I&apos;ll call it <code>GalleryProvider</code>.
     </P>
 
     <CodeSandboxIframe slug='introducing-the-galleryprovider-zs0i1' caption="The GalleryProvider" module='/GalleryProvider.jsx' view='editor' />
@@ -318,24 +318,24 @@ const Post = _props => {
       Here is our provider.
       Note that this component is stateful and we are passing the <code>active</code> prop to the <code>FullScreenGallery</code> component.
       We could also just write something like <code>{'{active && <FullScreenGallery ... />}'}</code>, but this way the <code>FullScreenGallery</code> will know about being active or not, and will be able to implement any kind of in/out animation.
-      Let&as wrap our component tree with this provider and wire the <code>Gallery</code> component to have access to it&as goodies via the <code>useFullScreenGallery</code> hook.
+      Let&apos;s wrap our component tree with this provider and wire the <code>Gallery</code> component to have access to it&apos;s goodies via the <code>useFullScreenGallery</code> hook.
     </P>
 
     <CodeSandboxIframe slug='introducing-the-galleryprovider-crlud' caption="Wiring the Gallery component" module='/Gallery.jsx' />
 
     <P>
       Starting to look functional already. When you click on an image on the gallery, it triggers the <code>FullScreenGallery</code> to show.
-      For demonstration purposes, I&ave added a second gallery to show how they share the usage of the fullscreen gallery.
-      We are missing some behaviour yet, because the <code>FullScreenGallery</code> can&at be closed, and we can&at navigate through the images on it.
-      Let&as wire the close button, the prev/next buttons and the <code>onClick</code> handler for the images on the strip.
+      For demonstration purposes, I&apos;ve added a second gallery to show how they share the usage of the fullscreen gallery.
+      We are missing some behaviour yet, because the <code>FullScreenGallery</code> can&apos;t be closed, and we can&apos;t navigate through the images on it.
+      Let&apos;s wire the close button, the prev/next buttons and the <code>onClick</code> handler for the images on the strip.
     </P>
 
     <CodeSandboxIframe slug='wiring-the-fullscreengallery-controls-boq0r' caption="Wiring the FullScreenGallery controls" module='/FullScreenGallery/index.jsx' />
 
     <P>
-      That&as it. We are finished. My version of the full-screen gallery also has keyboard and swipe support, but this post got really long already.
+      That&apos;s it. We are finished. My version of the full-screen gallery also has keyboard and swipe support, but this post got really long already.
       In any case, you can implement those on your own following the same pattern for organizing behaviour we used for the Panner.
-      There&as also still a good opportunity for refactor and better code organization here, but I think we did a pretty good job so far.
+      There&apos;s also still a good opportunity for refactor and better code organization here, but I think we did a pretty good job so far.
     </P>
 
     <P>
