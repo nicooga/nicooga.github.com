@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 
 import setDocumentTitle from '../setDocumentTitle'
 import posts from '../posts'
+import CommentHub from '../components/CommentHub'
 
 const DATE_FORMAT = 'MMMM Do YYYY'
 
@@ -35,6 +36,12 @@ const FlexSpacer = styled.div`
   flex-grow: 1;
 `
 
+const Separator = styled.div`
+  width: 100%;
+  border-bottom: 1px solid lightgrey;
+  margin: 16px 0;
+`
+
 const PostViewer = ({ match }) => {
   const post = posts.find(p => p.slug === match.params.slug)
   const Component = post.component
@@ -51,6 +58,10 @@ const PostViewer = ({ match }) => {
     </Header>
 
     <Component />
+
+    <Separator />
+
+    <CommentHub />
   </div>
 }
 

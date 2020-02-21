@@ -13,7 +13,9 @@ import {
   withRouter
 } from 'react-router-dom'
 
-import ThemeProvider from './ThemeProvider'
+import ThemeProvider from './components/ThemeProvider'
+import AuthProvider from './components/AuthProvider'
+import CommentsApiProvider from './components/CommentsApiProvider'
 
 import Home from './pages/Home'
 import AboutMe from './pages/AboutMe'
@@ -60,33 +62,37 @@ const Body = styled.div`
 `
 
 const App = _props => (
-  <ThemeProvider>
-    <GalleryOverlayProvider>
-      <Router>
-        <Root>
-          <MainContainer>
-            <Navigation />
+  <CommentsApiProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <GalleryOverlayProvider>
+          <Router>
+            <Root>
+              <MainContainer>
+                <Navigation />
 
-            <Body>
-              <Switch>
-                <Route exact path='/' component={Home} />
-                <Route path='/about-me' component={AboutMe} />
-                <Route path='/contact' component={Contact} />
-                {/* I use withRouter to force a re-render in route change */}
-                <Route path='/about-software' render={withRouter(_ => <PostList filters={{ tagsInclude: ['software'] }}/>)} />
-                <Route path='/about-stuff' render={withRouter(_ => <PostList filters={{ tagsExclude: ['software'] }}/>)} />
-                <Route path='/all-posts' component={withRouter(PostList)} />
-                <Route path='/posts/:slug' component={PostViewer} />
-                <Route path='*' component={NotFound} />
-              </Switch>
-            </Body>
+                <Body>
+                  <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route path='/about-me' component={AboutMe} />
+                    <Route path='/contact' component={Contact} />
+                    {/* I use withRouter to force a re-render on route change */}
+                    <Route path='/about-software' render={withRouter(_ => <PostList filters={{ tagsInclude: ['software'] }}/>)} />
+                    <Route path='/about-stuff' render={withRouter(_ => <PostList filters={{ tagsExclude: ['software'] }}/>)} />
+                    <Route path='/all-posts' component={withRouter(PostList)} />
+                    <Route path='/posts/:slug' component={PostViewer} />
+                    <Route path='*' component={NotFound} />
+                  </Switch>
+                </Body>
 
-            <Footer />
-          </MainContainer>
-        </Root>
-      </Router>
-    </GalleryOverlayProvider>
-  </ThemeProvider>
+                <Footer />
+              </MainContainer>
+            </Root>
+          </Router>
+        </GalleryOverlayProvider>
+      </ThemeProvider>
+    </AuthProvider>
+  </CommentsApiProvider>
 )
 
 ReactDOM.render(<App />, document.getElementById('root'))

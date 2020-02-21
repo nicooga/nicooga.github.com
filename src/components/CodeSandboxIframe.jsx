@@ -128,7 +128,7 @@ const CodeSandboxIframe = ({ slug, caption, view, height, module }) => {
     <Root ref={rootRef}>
       <Caption>{caption}</Caption>
       <Content style={{ height }}>
-        {isVisible ? <IframeWrapper /> : <HidingPlaceholder />}
+        {isVisible && false ? <IframeWrapper /> : <HidingPlaceholder />}
       </Content>
     </Root>
   )
