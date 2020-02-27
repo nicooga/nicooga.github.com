@@ -13,6 +13,7 @@ const LOGIN_INTO_COMMENTS_API_MUTATION = gql`
       user {
         email
         name
+        avatarUrl
       }
       token
     }
@@ -39,13 +40,13 @@ const getGoogleOauthData = async _ => {
   return { accessToken, idToken }
 }
 
+const setToken = token => ls.set('token', token)
+
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(ls.get('token'))
   const [currentUser, setCurrentUser] = useState(ls.get('currentUser'))
   const [loginIntoCommentsApi] = useMutation(LOGIN_INTO_COMMENTS_API_MUTATION)
 
   useEffect(_ => { initGapiClient() })
-  useEffect(_ => { ls.set('token', token) }, [token])
   useEffect(_ => { ls.set('currentUser', currentUser) }, [currentUser])
 
   const logIn = async _ => {
@@ -58,8 +59,8 @@ const AuthProvider = ({ children }) => {
   }
 
   const logOut = _ => {
-    setCurrentUser(undefined)
-    setToken(undefined)
+    setCurrentUser(null)
+    setToken(null)
   }
 
   return (

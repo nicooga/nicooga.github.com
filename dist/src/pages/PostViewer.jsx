@@ -32,6 +32,7 @@ const P = styled(Typography).attrs({ variant: 'body1', paragraph: true })``
 const PostViewer = ({ match }) => {
   const post = posts.find(p => p.slug === match.params.slug)
   const Component = post.component
+
   return <div>
     <Header>
       <Heading>{post.title}</Heading>
