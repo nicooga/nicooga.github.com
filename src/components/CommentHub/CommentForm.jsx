@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useForm, useField } from 'react-final-form-hooks'
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation, useApolloClient } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import extractGqlValidationErrors from '../../extractGqlValidationErrors'
@@ -38,6 +38,7 @@ const TextField = styled(MuiTextField)`
 const CommentForm = ({ postSlug }) => {
   const { currentUser, logIn } = useAuth()
   const [createComment] = useMutation(CREATE_COMMENT_MUTATION)
+  const client = useApolloClient()
 
   const { handleSubmit, form } = useForm({
     async onSubmit({ body }) {
@@ -46,6 +47,7 @@ const CommentForm = ({ postSlug }) => {
 
       try {
         await createComment({ variables: { input: { postSlug, body }}})
+        client.resetStore()
       } catch (error) {
         return extractGqlValidationErrors(error)
       }
@@ -59,7 +61,7 @@ const CommentForm = ({ postSlug }) => {
   return (
     <form onSubmit={handleSubmit} onKeyDown={onKeyDown}>
       <Root>
-        <Avatar src={currentUser && currentUser.avatarUrl} />
+        <Avatar src={currentUser && currentUser.avatarUrl} alt={currentUser.name}/>
 
         <TextField
           label='Comment body'
