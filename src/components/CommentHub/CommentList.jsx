@@ -13,6 +13,7 @@ const LIST_COMMENTS_QUERY = gql`
       body
       createdAt
       user {
+        id
         name
         avatarUrl
       }
@@ -26,15 +27,16 @@ const Root = styled.div`
 `
 
 const CommentList = ({ postSlug }) => {
-  const { loading, data } = useQuery(LIST_COMMENTS_QUERY, { variables: { postSlug }})
+  const { loading, error, data } = useQuery(LIST_COMMENTS_QUERY, { variables: { postSlug }})
 
   return (
     <Root>
-      {!loading && data.postComments.map(comment => (
+      {!loading && !error && data.postComments.map(comment => (
         <Comment
           id={comment.id}
           body={comment.body}
           createdAt={comment.createdAt}
+          userId={comment.user.id}
           userName={comment.user.name}
           userAvatarUrl={comment.user.avatarUrl}
         />

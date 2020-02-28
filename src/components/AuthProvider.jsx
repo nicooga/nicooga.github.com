@@ -11,6 +11,7 @@ const LOGIN_INTO_COMMENTS_API_MUTATION = gql`
   mutation login($input: LoginInput!) {
     login(input: $input) {
       user {
+        id
         email
         name
         avatarUrl

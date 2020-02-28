@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useForm, useField } from 'react-final-form-hooks'
@@ -12,6 +12,7 @@ import MuiTextField from '@material-ui/core/TextField'
 import MuiAvatar from '@material-ui/core/Avatar'
 import Paper from '@material-ui/core/Paper'
 import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
 import SendIcon from '@material-ui/icons/Send'
 
 const CREATE_COMMENT_MUTATION = gql`
@@ -22,9 +23,21 @@ const CREATE_COMMENT_MUTATION = gql`
   }
 `
 
-const Root = styled(Paper)`
+const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const MainContainer = styled(Paper)`
   display: flex;
   align-items: center;
+  margin-bottom: 8px;
+`
+
+const Hint = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  color: grey;
 `
 
 const Avatar = styled(MuiAvatar)`
@@ -48,6 +61,7 @@ const CommentForm = ({ postSlug }) => {
       try {
         await createComment({ variables: { input: { postSlug, body }}})
         client.resetStore()
+        setTimeout(_ => form.reset())
       } catch (error) {
         return extractGqlValidationErrors(error)
       }
@@ -60,12 +74,14 @@ const CommentForm = ({ postSlug }) => {
 
   return (
     <form onSubmit={handleSubmit} onKeyDown={onKeyDown}>
-      <Root>
-        <Avatar src={currentUser && currentUser.avatarUrl} alt={currentUser.name}/>
+      <MainContainer>
+        <Avatar
+          src={currentUser && currentUser.avatarUrl}
+          alt={currentUser && currentUser.name}
+        />
 
         <TextField
-          label='Comment body'
-          placeholder='Be the first one to comment!'
+          label='Submit your comment'
           variant='filled'
           multiline
           rows='2'
@@ -75,7 +91,11 @@ const CommentForm = ({ postSlug }) => {
         <IconButton type='submit'>
           <SendIcon />
         </IconButton>
-      </Root>
+      </MainContainer>
+
+      <Hint>
+        <Typography variant='caption'>Ctrl + Enter will submit the comment</Typography>
+      </Hint>
     </form>
   )
 }
