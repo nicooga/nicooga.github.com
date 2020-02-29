@@ -14,7 +14,8 @@ module.exports = {
   devtool: 'source-maps',
   plugins: [
     htmlPlugin('index.html'),
-    htmlPlugin('404.html'),
+    htmlPlugin('404.html'), // little trick to make SPA mode work in GitHub pages
+    new webpack.EnvironmentPlugin(['COMMENTS_API_URL'])
   ],
   module: {
     rules: [

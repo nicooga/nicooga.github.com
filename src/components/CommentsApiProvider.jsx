@@ -7,7 +7,7 @@ import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import ls from 'local-storage'
 
-const COMMENTS_API_URL = 'http://localhost:4000/'
+const COMMENTS_API_URL = process.env.COMMENTS_API_URL
 
 const httpLink = createHttpLink({ uri: COMMENTS_API_URL })
 

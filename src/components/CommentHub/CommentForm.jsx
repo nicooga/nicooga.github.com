@@ -38,6 +38,7 @@ const Hint = styled.div`
   display: flex;
   justify-content: flex-end;
   color: grey;
+  transition: opacity 300ms;
 `
 
 const Avatar = styled(MuiAvatar)`
@@ -49,6 +50,8 @@ const TextField = styled(MuiTextField)`
 `
 
 const CommentForm = ({ postSlug }) => {
+  const [focused, setFocused] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const { currentUser, logIn } = useAuth()
   const [createComment] = useMutation(CREATE_COMMENT_MUTATION)
   const client = useApolloClient()
@@ -56,6 +59,9 @@ const CommentForm = ({ postSlug }) => {
   const { handleSubmit, form } = useForm({
     async onSubmit({ body }) {
       if (!body || !body.trim()) { return }
+
+      setSubmitting(true)
+
       if (!currentUser) { await logIn() }
 
       try {
@@ -65,6 +71,8 @@ const CommentForm = ({ postSlug }) => {
       } catch (error) {
         return extractGqlValidationErrors(error)
       }
+
+      setSubmitting(false)
     }
   })
 
@@ -85,17 +93,22 @@ const CommentForm = ({ postSlug }) => {
           variant='filled'
           multiline
           rows='2'
+          inputProps={{
+            onFocus: _ => setFocused(true),
+            onBlur: _ => setFocused(false)
+          }}
+          disabled={submitting}
           {...body.input}
         />
 
-        <IconButton type='submit'>
+        <IconButton type='submit' disabled={submitting}>
           <SendIcon />
         </IconButton>
       </MainContainer>
 
-      <Hint>
-        <Typography variant='caption'>Ctrl + Enter will submit the comment</Typography>
-      </Hint>
+        <Hint style={{ opacity: focused ? 1 : 0 }}>
+          <Typography variant='caption'>Ctrl + Enter will submit the comment</Typography>
+        </Hint>
     </form>
   )
 }

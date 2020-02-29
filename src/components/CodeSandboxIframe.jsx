@@ -53,10 +53,7 @@ const Caption = styled(Typography).attrs({ variant: 'caption', component: 'div' 
 const Iframe = styled.iframe`
   width: 100%;
   height: 100%;
-  max-height: 70vh;
   border: 1px solid lightgrey;
-  overflow: 'hidden';
-  margin-bottom: 16px;
   box-sizing: border-box;
 `
 
@@ -120,7 +117,7 @@ const CodeSandboxIframe = ({ slug, caption, view, height, module }) => {
 
   const HidingPlaceholder = _props => (
     <Placeholder>
-      Hiding this Iframe for performace reasons :)
+      Hiding this CodeSandbox frame for performace reasons :)
     </Placeholder>
   )
 
@@ -128,7 +125,7 @@ const CodeSandboxIframe = ({ slug, caption, view, height, module }) => {
     <Root ref={rootRef}>
       <Caption>{caption}</Caption>
       <Content style={{ height }}>
-        {isVisible && false ? <IframeWrapper /> : <HidingPlaceholder />}
+        {isVisible ? <IframeWrapper /> : <HidingPlaceholder />}
       </Content>
     </Root>
   )
